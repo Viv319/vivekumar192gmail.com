@@ -1,0 +1,93 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+.main {
+  width: 100vw;
+  height: 100vh;
+  background-color: #1f1f23;
+}
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.h2 {
+  font-family: Open Sans;
+  font-size: 22px;
+  font-weight: 600;
+  line-height: 29.96px;
+  text-align: left;
+  color: white;
+  margin-bottom: 2rem;
+  margin-top: 3rem;
+}
+
+.common {
+  width: 30rem;
+  border: 1px solid #d0d0d0;
+  background-color: #1f1f23;
+  border-radius: 6px;
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.common1 {
+  width: 30rem;
+  border: 1px solid #d0d0d0;
+  background-color: #1f1f23;
+  border-radius: 6px;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+}
+
+.input {
+  padding-top: 15px;
+  width: 25rem;
+  height: 5vh;
+  margin-bottom: 1rem;
+  padding-left: 1rem;
+  border: none;
+  outline: none;
+  background-color: #1f1f23;
+  color: #828282;
+}
+
+.button {
+  background-color: #1a5fff;
+  height: 8vh;
+  border-radius: 55.13px;
+  width: 30rem;
+  margin-top: 1rem;
+  color: #ffffff;
+  border: none !important;
+  cursor: pointer;
+  padding: 0px 132.31px 0px 132.31px;
+  font-family: Open Sans;
+  font-size: 19.29px;
+  font-weight: 400;
+  line-height: 26.28px;
+  text-align: center;
+}
+
+.logoutbutton {
+  position: absolute;
+  bottom: 50px;
+  left: 40px;
+}
+
+.logout3 {
+  color: #cf3636;
+  background-color: #1f1f23;
+  font-family: Poppins;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 24px;
+  text-align: left;
+  border: none;
+  outline: none;
+  display: flex;
+  cursor: pointer;
+}

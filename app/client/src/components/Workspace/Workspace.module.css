@@ -1,0 +1,253 @@
+.upper {
+  background-color: #18181b;
+  border-bottom: 1px solid #2c2c2f;
+  height: 8vh;
+  width: 100vw;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.input1 {
+  margin-left: 20px;
+  padding-left: 10px;
+  background-color: #37373e;
+  font-family: Open Sans;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 21px;
+  text-align: left;
+  color: #767676d1;
+  border: none;
+  outline: none;
+}
+
+.formOption {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+
+.selectedOption1 {
+  width: 58px;
+  height: 32px;
+  padding: 7.1px 13px 7.9px 13px;
+  border-radius: 6px;
+  border: 1px solid #7ea6ff;
+  color: #7ea6ff;
+}
+.selectedOption1,
+.selectedOption {
+  font-family: Open Sans;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 16.8px;
+  cursor: pointer;
+}
+.right {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  margin-right: 20px;
+}
+
+.option1 {
+  /* background-color: #848890; */
+  background-color: #848890;
+  border-radius: 4px;
+  font-family: Open Sans;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 16.8px;
+  text-align: left;
+  cursor: pointer;
+  padding: 4px 10px 4px 10px;
+  cursor: pointer;
+}
+
+.option1Clicked {
+  background-color: #1a5fff; /* Your new color */
+}
+
+.option2 {
+  background-color: #4ade80cc;
+  border-radius: 4px;
+  font-family: Open Sans;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 16.8px;
+  text-align: left;
+  padding: 4px 10px 4px 10px;
+  cursor: pointer;
+}
+
+.option3 {
+  cursor: pointer;
+}
+.body {
+  height: 92vh;
+  width: 100vw;
+  background-color: #1f1f23;
+  padding: 15px;
+}
+
+.left {
+  display: inline-block;
+  background-color: #18181b;
+  height: 88vh;
+  width: 25vw;
+  border-bottom: 1px solid #2c2c2f;
+  color: white;
+  border-radius: 8px;
+  /* margin: 20px; */
+}
+
+.align {
+  margin-top: 5rem;
+  margin-left: 1rem;
+}
+
+.align2 {
+  margin-left: 1rem;
+}
+
+.bubble,
+.inputs {
+  font-family: Open Sans;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 21px;
+  text-align: left;
+  margin-left: 10px;
+  margin-bottom: 5px;
+}
+
+.container1,
+.container2,
+.container3,
+.container4,
+.container5 {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.imageCommon {
+  margin-right: 8px;
+}
+.common1,
+.common2,
+.common3,
+.common4,
+.common5,
+.common6,
+.common7,
+.common8,
+.common9,
+.common10,
+.common11 {
+  border: 1px solid #27272a;
+  border-radius: 8px;
+  padding: 9px 17px 9px 17px;
+  margin-bottom: 1.5rem;
+
+  font-family: Open Sans;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 21px;
+  text-align: left;
+  /* gap: 1rem; */
+  background-color: #1f1f23;
+  width: 10rem;
+  height: 2.5rem;
+}
+
+.common11 {
+  margin-left: 12px;
+}
+
+.middleright {
+  display: inline-block;
+}
+
+.start {
+  border-radius: 16px;
+  background-color: #18181b;
+  width: 17rem;
+  height: 3rem;
+  font-family: Open Sans;
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 21px;
+  text-align: left;
+  color: white;
+  padding: 13px;
+  position: absolute;
+  top: 8rem;
+  margin-left: 20rem;
+}
+
+/* Workspace.module.css */
+.popup {
+  position: absolute;
+  background-color: #18181b;
+  padding: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  border-radius: 8px;
+  border: 1px solid #18181b;
+  /* background-color: red; */
+  margin-left: 50px;
+}
+
+.popupContent {
+  display: flex;
+  flex-direction: column;
+  width: 16rem;
+}
+
+.popupContent input {
+  margin-bottom: 10px;
+}
+
+.deleteIng {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: #444444;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  right: 0;
+  top: 0;
+  margin-top: -20px;
+  margin-right: -20px;
+  position: absolute;
+}
+
+.inputlast {
+  background-color: #1f1f23;
+  border: none;
+  outline: none;
+  width: 13.5rem;
+  height: 1.5rem;
+  color: #c0c0c04f;
+}
+
+.lastP {
+  font-family: Open Sans;
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 21px;
+  text-align: left;
+  color: white;
+  margin-bottom: 5px;
+}
+
+.hintText {
+  color: #555555;
+}
