@@ -70,8 +70,9 @@ export const deleteFolder = async (folderId) => {
     // const folderId = JSON.parse(localStorage.getItem("folderId"));
     const reqUrl = `${backendUrl}/deleteFolder/${folderId}`;
 
-    await axios.delete(reqUrl);
+    const response = await axios.delete(reqUrl);
     // console.log(response);
+    console.log(response);
     return "Folder deleted successfully";
   } catch (error) {
     console.log(error);

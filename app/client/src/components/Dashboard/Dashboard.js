@@ -29,7 +29,7 @@ export default function Home() {
 
   const userId = localStorage.getItem("userId");
   const usernameId = userId ? userId.replace(/"/g, "") : "";
-  localStorage.removeItem("folderId");
+  // localStorage.removeItem("folderId");
   const closeDeletePopup = () => {
     setisFormDeletePopupVisible(false);
     setIsFolderDeletePopupVisible(false);
@@ -141,6 +141,7 @@ export default function Home() {
   };
 
   const clickBot = () => {
+    localStorage.removeItem("folderId");
     navigate("/workspace");
   };
 
@@ -153,10 +154,10 @@ export default function Home() {
     localStorage.setItem("folderId", folderId);
     navigate("/dashboard/folder");
   };
-  const handleFolderDelete = (folderId) => {
+  const handleFolderDelete = (folId) => {
+    console.log(folId);
+    localStorage.setItem("folderId", folId);
     setIsFolderDeletePopupVisible(true);
-
-    localStorage.setItem("folderId", folderId);
   };
 
   const handleFormDelete = (formId) => {

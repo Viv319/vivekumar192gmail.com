@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import close from "../../assets/images/close.png";
 import styles from "./Workspace.module.css";
 import { useNavigate } from "react-router-dom";
@@ -15,7 +15,6 @@ import button from "../../assets/images/button.png";
 import smallgif from "../../assets/images/smallgif.png";
 import vector from "../../assets/images/vector.png";
 import delete1 from "../../assets/images/delete1.png";
-import axios from "axios";
 import { savePopups } from "../../api/popup";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -33,6 +32,9 @@ export default function Workspace() {
   const popupHeight = 50;
   const popupSpacing = 0;
 
+  useEffect(() => {
+    // localStorage.setItem("formId", formId);
+  });
   const clickCross = () => {
     navigate("/dashboard");
   };
@@ -110,8 +112,23 @@ export default function Workspace() {
   };
 
   const handleOption1Click = () => {
-    if (isSaved) setIsOption1Clicked(true);
-    else {
+    if (isSaved) {
+      setIsOption1Clicked(true);
+      toast.success("form link copied successfully successfully", {
+        position: "top-center",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+      });
+
+      navigator.clipboard.writeText(
+        `http://localhost:3000/share/fillForm/${localStorage.getItem("formId")}`
+      );
+    } else {
       toast.error("first save the form then share", {
         position: "top-center",
         autoClose: 3000,
@@ -138,8 +155,6 @@ export default function Workspace() {
         const result = await savePopups({ name: formName, contents, folderId });
 
         if (result) {
-          console.log("Popups saved successfully:", result);
-
           toast.success("Form created successfully", {
             position: "top-center",
             autoClose: 3000,
@@ -150,6 +165,10 @@ export default function Workspace() {
             progress: undefined,
             theme: "colored",
           });
+
+          console.log("Popups saved successfully:", result.data._id);
+
+          localStorage.setItem("formId", result.data._id);
           setIsSaved(true);
           // setTimeout(() => {
           // navigate("/dashboard/folder");
@@ -162,8 +181,6 @@ export default function Workspace() {
         });
 
         if (result) {
-          console.log("Popups saved successfully:", result);
-
           toast.success("Form created successfully", {
             position: "top-center",
             autoClose: 3000,
@@ -174,6 +191,10 @@ export default function Workspace() {
             progress: undefined,
             theme: "colored",
           });
+
+          console.log("Popups saved successfully:", result.data);
+
+          localStorage.setItem("formId", result.data._id);
           setIsSaved(true);
           // setTimeout(() => {
           //   navigate("/dashboard");

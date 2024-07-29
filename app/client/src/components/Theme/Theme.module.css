@@ -62,7 +62,8 @@
 }
 
 .option1 {
-  background-color: #1a5fff;
+  /* background-color: #848890; */
+  background-color: #848890;
   border-radius: 4px;
   font-family: Open Sans;
   font-size: 14px;
@@ -72,6 +73,10 @@
   cursor: pointer;
   padding: 4px 10px 4px 10px;
   cursor: pointer;
+}
+
+.option1Clicked {
+  background-color: #1a5fff; /* Your new color */
 }
 
 .option2 {

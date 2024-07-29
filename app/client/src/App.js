@@ -11,6 +11,7 @@ import ResponsePage from "./pages/ResponsePage/ResponsePage";
 import FormbotPage from "./pages/FormbotPage/FormbotPage";
 import axios from "axios";
 import FolderPage from "./components/FolderPage/FolderPage";
+import Share from "./components/Share/Share";
 
 function App() {
   axios.defaults.withCredentials = true;
@@ -27,6 +28,8 @@ function App() {
         <Route path="/workspace/theme" element={<ThemePage />} />
         <Route path="/workspace/response" element={<ResponsePage />} />
         <Route path="/dashboard/folder" element={<FolderPage />} />
+        <Route path="/share/fillForm" element={<Share />} />
+        <Route path="/share/fillForm/:id" element={<Share />} />
         {/* <Route path="/formbot" element={<FormbotPage />} /> */}
       </Routes>
     </BrowserRouter>

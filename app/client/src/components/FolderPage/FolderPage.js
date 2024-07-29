@@ -240,6 +240,7 @@ export default function Home() {
               <>
                 <div key={index} className={styles.formdiv2}>
                   {form.name}
+                  {localStorage.setItem("formId", form._id)}
                 </div>
                 <div>
                   <img

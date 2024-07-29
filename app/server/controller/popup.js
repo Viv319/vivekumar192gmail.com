@@ -14,10 +14,8 @@ const createPopup = async (req, res, next) => {
       folderId,
     }); // Formatted data for the popup model
     // const popup = (popupData);
-    const savepopup = await popupData.save();
-    res
-      .status(201)
-      .json({ message: "Popup saved successfully", data: savepopup });
+    const savedForm = await popupData.save();
+    res.status(201).json({ _id: savedForm._id });
   } catch (error) {
     console.error("Error saving popup:", error);
     res.status(500).json({ message: "Error saving popup" });
@@ -104,10 +102,45 @@ const deleteFolderWithAllPopups = async (req, res, next) => {
   }
 };
 
+const updatePopup = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+
+    const theme = req.body;
+
+    const updatedForm = await Popup.findByIdAndUpdate(id, theme);
+    res
+      .status(201)
+      .json({ message: "Popup theme updated successfully", data: updatedForm });
+  } catch (error) {
+    console.error("Error saving popup:", error);
+    res.status(500).json({ message: "Error saving popup" });
+  }
+};
+
+const getPopupByFormId = async (req, res, next) => {
+  try {
+    const { formId } = req.params;
+    const popups = await Popup.find({ _id: formId });
+
+    if (popups.length === 0) {
+      return res.status(404).json({
+        errorMessage: "No forms found for the given user",
+      });
+    }
+
+    res.json({ popups: popups });
+  } catch (error) {
+    next(error);
+  }
+};
+
 module.exports = {
   createPopup,
   getPopupByUserId,
   getPopupByFolderId,
   deleteUserPopups,
   deleteFolderWithAllPopups,
+  updatePopup,
+  getPopupByFormId,
 };

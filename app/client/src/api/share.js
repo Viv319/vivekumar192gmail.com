@@ -1,0 +1,114 @@
+import axios from "axios";
+// const backendUrl =`https://cuvette-final-evaluation-nov-batch-backend.vercel.app/api/v1/ticket`;
+const backendUrl = `http://localhost:3001/api/v1/share`;
+
+// export const savePopups = async ({ name, contents }) => {
+//   try {
+//     const reqUrl = `${backendUrl}/save`;
+
+//     const token = JSON.parse(localStorage.getItem("token"));
+//     axios.defaults.headers.common["Authorization"] = token;
+
+//     const folderId = localStorage.getItem("folderId");
+
+//     await axios.post(reqUrl, { name, contents, folderId });
+//     return "popup created successfully";
+//   } catch (error) {
+//     console.error("Error saving popups:", error);
+//   }
+// };
+
+export const getSahredFormResponse = async () => {
+  try {
+    // this is fro authorization purposes
+    const token = JSON.parse(localStorage.getItem("token"));
+    axios.defaults.headers.common["Authorization"] = token;
+    // shared;
+    const formId = localStorage.getItem("formId");
+
+    // const reqUrl = `${backendUrl}/shareForm/${formId}`;
+    const reqUrl = `${backendUrl}/getSharedForms/${formId}`;
+
+    console.log("Request URL:", reqUrl);
+
+    const response = await axios.get(reqUrl);
+
+    if (response) {
+      console.log(response.data);
+      // console.log("sdfsd");
+      return response;
+    } else {
+      return [];
+    }
+  } catch (error) {
+    console.log(error);
+    return [];
+  }
+};
+
+// export const getFormByFolderId = async (folderId) => {
+//   try {
+//     // this is fro authorization purposes
+//     const token = JSON.parse(localStorage.getItem("token"));
+//     axios.defaults.headers.common["Authorization"] = token;
+
+//     const reqUrl = `${backendUrl}/getFormWthFolderId/${folderId}`;
+//     const response = await axios.get(reqUrl);
+
+//     if (response.data && response.data.popups) {
+//       console.log(response.data.popups);
+//       // console.log("sdfsd");
+//       return response.data.popups;
+//     } else {
+//       return [];
+//     }
+//   } catch (error) {
+//     console.log(error);
+//     return [];
+//   }
+// };
+
+// export const deleteForm = async (formId) => {
+//   try {
+//     const token = JSON.parse(localStorage.getItem("token"));
+//     axios.defaults.headers.common["Authorization"] = token;
+
+//     const reqUrl = `${backendUrl}/form/${formId}`;
+
+//     const response = await axios.delete(reqUrl);
+//     console.log(response);
+//   } catch (error) {
+//     console.log(error);
+//   }
+// };
+
+// export const updatePopups = async ({ theme }) => {
+//   try {
+//     const id = localStorage.getItem("formId");
+//     const reqUrl = `${backendUrl}/updateForm/${id}`;
+
+//     const token = JSON.parse(localStorage.getItem("token"));
+//     axios.defaults.headers.common["Authorization"] = token;
+
+//     const result = await axios.patch(reqUrl, { theme });
+
+//     return "popup theme updated successfully", result;
+//   } catch (error) {
+//     console.error("Error saving popups:", error);
+//   }
+// };
+
+// export const fetchPopupByFormId = async () => {
+//   try {
+//     const id = localStorage.getItem("shareFormId");
+//     const reqUrl = `${backendUrl}/getByFormId/${id}`;
+
+//     const token = JSON.parse(localStorage.getItem("token"));
+//     axios.defaults.headers.common["Authorization"] = token;
+
+//     const response = await axios.get(reqUrl);
+//     return response.data;
+//   } catch (error) {
+//     console.log(error);
+//   }
+// };

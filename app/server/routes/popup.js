@@ -18,4 +18,12 @@ router.get(
   popupController.getPopupByFolderId
 );
 
+router.patch("/updateForm/:id", verifyToken, popupController.updatePopup);
+
+router.get(
+  "/getByFormId/:formId",
+  verifyToken,
+  popupController.getPopupByFormId
+);
+
 module.exports = router;

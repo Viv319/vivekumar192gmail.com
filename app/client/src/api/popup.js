@@ -12,8 +12,10 @@ export const savePopups = async ({ name, contents }) => {
 
     const folderId = localStorage.getItem("folderId");
 
-    await axios.post(reqUrl, { name, contents, folderId });
-    return "popup created successfully";
+    const result = await axios.post(reqUrl, { name, contents, folderId });
+
+    localStorage.setItem("formId", result.data._id);
+    return result;
   } catch (error) {
     console.error("Error saving popups:", error);
   }
@@ -72,6 +74,37 @@ export const deleteForm = async (formId) => {
 
     const response = await axios.delete(reqUrl);
     console.log(response);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const updatePopups = async ({ theme }) => {
+  try {
+    const id = localStorage.getItem("formId");
+    const reqUrl = `${backendUrl}/updateForm/${id}`;
+
+    const token = JSON.parse(localStorage.getItem("token"));
+    axios.defaults.headers.common["Authorization"] = token;
+
+    const result = await axios.patch(reqUrl, { theme });
+
+    return "popup theme updated successfully", result;
+  } catch (error) {
+    console.error("Error saving popups:", error);
+  }
+};
+
+export const fetchPopupByFormId = async () => {
+  try {
+    const id = localStorage.getItem("shareFormId");
+    const reqUrl = `${backendUrl}/getByFormId/${id}`;
+
+    const token = JSON.parse(localStorage.getItem("token"));
+    axios.defaults.headers.common["Authorization"] = token;
+
+    const response = await axios.get(reqUrl);
+    return response.data;
   } catch (error) {
     console.log(error);
   }

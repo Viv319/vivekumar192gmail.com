@@ -5,6 +5,7 @@ const folderRoutes = require("./routes/folder");
 const formRoutes = require("./routes/form");
 // const popupRoutes = require("./routes/popup");
 const popupRoutes = require("./routes/popup");
+const shareRoutes = require("./routes/share");
 
 // const popupRoutes2 = require("./routes/popup");
 
@@ -35,7 +36,7 @@ app.use("/api/v1/folder", folderRoutes);
 app.use("/api/v1/form", formRoutes);
 // app.use("/api/v1/popup", popupRoutes);
 app.use("/api/v1/popup", popupRoutes);
-
+app.use("/api/v1/share", shareRoutes);
 // app.use("/api", popupRoutes2);
 
 app.use((error, req, res, next) => {

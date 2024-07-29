@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { loginUser } from "../../api/auth";
 import styles from "./Login.module.css";
 import { useNavigate } from "react-router-dom";
@@ -12,6 +12,10 @@ export default function Login() {
   const [errors, setErrors] = useState({
     email: null,
     password: null,
+  });
+
+  useEffect(() => {
+    localStorage.clear();
   });
 
   const navigate = useNavigate();

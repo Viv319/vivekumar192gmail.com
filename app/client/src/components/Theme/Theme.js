@@ -8,26 +8,48 @@ import theme3 from "../../assets/images/theme3.png";
 import theme11 from "../../assets/images/theme11.png";
 import theme22 from "../../assets/images/theme22.png";
 import theme33 from "../../assets/images/theme33.png";
-
-import themeformcircle from "../../assets/images/themeformcircle.png";
-// import theme11 from "../../assets/images/theme11.png";
-// import theme22 from "../../assets/images/theme22.png";
+import { updatePopups } from "../../api/popup";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function Theme() {
-  const [username, setUsername] = useState("");
-  const [isDropdownVisible, setIsDropdownVisible] = useState(false);
   const [selectedTheme, setSelectedTheme] = useState(""); // State to track selected theme
   const navigate = useNavigate();
 
-  const userId = localStorage.getItem("userId");
-  const usernameId = userId ? userId.replace(/"/g, "") : "";
+  // const [theme, setTheme] = useState(""); // State to track selected theme
 
-  const clickSetting = () => {
-    navigate("/setting");
-  };
+  const [isSaved, setIsSaved] = useState(false);
+  const [isOption1Clicked, setIsOption1Clicked] = useState(false);
 
-  const clickTheme = () => {
-    navigate("/workspace/theme");
+  const handleOption1Click = () => {
+    if (isSaved) {
+      setIsOption1Clicked(true);
+      toast.success("form link copied successfully successfully", {
+        position: "top-center",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+      });
+
+      navigator.clipboard.writeText(
+        `http://localhost:3000/share/fillForm/${localStorage.getItem("formId")}`
+      );
+    } else {
+      toast.error("first save the form theme then share", {
+        position: "top-center",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+      });
+    }
   };
 
   const clickCross = () => {
@@ -39,7 +61,58 @@ export default function Theme() {
   };
 
   const handleSubmit = async () => {
-    // Add logic to save or use the contents
+    try {
+      const folderId = localStorage.getItem("folderId");
+      if (folderId) {
+        const theme = selectedTheme;
+        const result = await updatePopups({ theme });
+
+        if (result) {
+          console.log("Popups theme saved successfully:", result);
+
+          toast.success("theme updated successfully", {
+            position: "top-center",
+            autoClose: 3000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "colored",
+          });
+          setIsSaved(true);
+          // setTimeout(() => {
+          // navigate("/dashboard/folder");
+          // }, 3000);
+        }
+      } else {
+        const theme = selectedTheme;
+        const result = await updatePopups({
+          theme,
+        });
+
+        if (result) {
+          console.log("Popups theme saved successfully:", result);
+
+          toast.success("Form theme updated successfully", {
+            position: "top-center",
+            autoClose: 3000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "colored",
+          });
+          setIsSaved(true);
+          // setTimeout(() => {
+          //   navigate("/dashboard");
+          // }, 3000);
+        }
+      }
+    } catch (error) {
+      console.error("Error updating theme popups:", error);
+    }
   };
 
   // Render the theme preview based on the selected theme
@@ -55,15 +128,6 @@ export default function Theme() {
         return (
           <div className={styles.img12}>
             <img src={theme22} className={styles.img12}></img>
-            {/* <div className={styles.img12}>
-              <div>
-                <img
-                  src={themeformcircle}
-                  className={styles.themeformcircle}
-                ></img>
-                <div>Hello</div>
-              </div>
-            </div> */}
           </div>
         );
       case "blue":
@@ -100,7 +164,14 @@ export default function Theme() {
         </div>
 
         <div className={styles.right}>
-          <div className={styles.option1}>Share</div>
+          <div
+            className={`${styles.option1} ${
+              isOption1Clicked ? styles.option1Clicked : ""
+            }`}
+            onClick={handleOption1Click}
+          >
+            Share
+          </div>
           <div className={styles.option2} onClick={handleSubmit}>
             Save
           </div>
@@ -142,6 +213,7 @@ export default function Theme() {
         </div>
         <div className={styles.right2}>{renderThemePreview()}</div>
       </div>
+      <ToastContainer></ToastContainer>
     </div>
   );
 }

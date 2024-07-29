@@ -80,5 +80,17 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #18171c;
+  /* background-color: #18171c; */
+  color: white;
+}
+
+.p1 {
+  font-family: Inter;
+  font-size: 36px;
+  font-weight: 400;
+  line-height: 43.57px;
+  color: #69696973;
+
+  width: 456px;
+  height: 44px;
 }
