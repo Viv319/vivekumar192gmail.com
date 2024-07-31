@@ -1,7 +1,7 @@
 // api/popup.js
 import axios from "axios";
-// const backendUrl =`https://cuvette-final-evaluation-nov-batch-backend.vercel.app/api/v1/ticket`;
-const backendUrl = `http://localhost:3001/api/v1/popup`;
+const backendUrl = `https://vivekumar192-server.vercel.app/api/v1/popup`;
+// const backendUrl = `http://localhost:3001/api/v1/popup`;
 
 export const savePopups = async ({ name, contents }) => {
   try {

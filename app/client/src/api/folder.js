@@ -1,6 +1,6 @@
 import axios from "axios";
-// const backendUrl =`https://cuvette-final-evaluation-nov-batch-backend.vercel.app/api/v1/ticket`;
-const backendUrl = `http://localhost:3001/api/v1/folder`;
+const backendUrl = `https://vivekumar192-server.vercel.app/api/v1/folder`;
+// const backendUrl = `http://localhost:3001/api/v1/folder`;
 
 export const createFolder = async ({ name }) => {
   try {
@@ -66,8 +66,6 @@ export const deleteFolder = async (folderId) => {
     const token = JSON.parse(localStorage.getItem("token"));
     axios.defaults.headers.common["Authorization"] = token;
 
-    // how to identify the folderId to which user wants to delete
-    // const folderId = JSON.parse(localStorage.getItem("folderId"));
     const reqUrl = `${backendUrl}/deleteFolder/${folderId}`;
 
     const response = await axios.delete(reqUrl);
@@ -78,23 +76,3 @@ export const deleteFolder = async (folderId) => {
     console.log(error);
   }
 };
-
-// export const getFolderIdByName = async (name) => {
-//   try {
-//     // this is fro authorization purposes
-//     const token = JSON.parse(localStorage.getItem("token"));
-//     axios.defaults.headers.common["Authorization"] = token;
-
-//     // how to identify the folderId to which user wants to delete
-
-//     const reqUrl = `${backendUrl}/getFolderName/${name}`;
-
-//     localStorage.setItem("folderId":if);
-
-//     await axios.delete(reqUrl);
-//     // console.log(response);
-//     return "Folder deleted successfully";
-//   } catch (error) {
-//     console.log(error);
-//   }
-// };
