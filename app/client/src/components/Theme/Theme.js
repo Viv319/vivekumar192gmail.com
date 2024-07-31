@@ -36,7 +36,10 @@ export default function Theme() {
       });
 
       navigator.clipboard.writeText(
-        `http://localhost:3000/share/fillForm/${localStorage.getItem("formId")}`
+        // `http://localhost:3000/share/fillForm/${localStorage.getItem("formId")}`
+        `https://vivekumar192-gmail-com-client.vercel.app/fillForm/${localStorage.getItem(
+          "formId"
+        )}`
       );
     } else {
       toast.error("first save the form theme then share", {
