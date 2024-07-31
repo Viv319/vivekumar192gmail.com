@@ -9,21 +9,6 @@ import blurOverlap from "../../assets/images/blurOverlap.png";
 import Container23right from "../../assets/images/Container23right.png";
 import Container31 from "../../assets/images/Container31.png";
 import Container32 from "../../assets/images/Container32.png";
-import email from "../../assets/images/email.png";
-import img2 from "../../assets/images/img2.png";
-import img3 from "../../assets/images/img3.png";
-import img4 from "../../assets/images/img44.png";
-import img5 from "../../assets/images/img5.png";
-import img6 from "../../assets/images/img6.png";
-import img7 from "../../assets/images/img7.png";
-import img8 from "../../assets/images/img8.png";
-import img9 from "../../assets/images/1.png";
-import img10 from "../../assets/images/2.png";
-import img11 from "../../assets/images/3.png";
-import img12 from "../../assets/images/4.png";
-import img13 from "../../assets/images/5.png";
-import img14 from "../../assets/images/6.png";
-import img15 from "../../assets/images/7.png";
 import img16 from "../../assets/images/img9.png";
 import img17 from "../../assets/images/img10.png";
 import image18 from "../../assets/images/img11.png";
@@ -43,6 +28,7 @@ import image31 from "../../assets/images/img24.png";
 import image32 from "../../assets/images/SVG.png";
 import image33 from "../../assets/images/Container.png";
 import { useNavigate } from "react-router-dom";
+import fullimage from "../../assets/images/fullimage.png";
 
 export default function Landing() {
   const navigate = useNavigate();
@@ -119,8 +105,6 @@ export default function Landing() {
           <div className={styles.leftcontainer23}>
             {/* <div className={styles.text2}> */}
             <img src={image33}></img>
-            {/* </div> */}
-            {/* <div className={styles.button2}>Learn more</div> */}
           </div>
 
           <div className={styles.rightcontainer23}>
@@ -159,56 +143,7 @@ export default function Landing() {
 
       <div className={styles.container5}>
         <div className={styles.container50}>
-          <div className={styles.container51}>
-            {/* <div className={styles.img6}></div> */}
-            <span className={styles.img7}>
-              <img src={email}></img>
-            </span>
-            <span className={styles.img8}>
-              <img src={img2}></img>
-            </span>
-            <span className={styles.img9}>
-              <img src={img3}></img>
-            </span>
-            <span className={styles.img10}>
-              <img src={img4}></img>
-            </span>
-            <span className={styles.img11}>
-              <img src={img5}></img>
-            </span>
-            <span className={styles.img12}>
-              <img src={img6}></img>
-            </span>
-            <span className={styles.img13}>
-              <img src={img7}></img>
-            </span>
-            <span className={styles.img14}>
-              <img src={img8}></img>
-            </span>
-          </div>
-          <div className={styles.con52}>
-            <span className={styles.img15}>
-              <img src={img9}></img>
-            </span>
-            <span className={styles.img16}>
-              <img src={img10}></img>
-            </span>
-            <span className={styles.img17}>
-              <img src={img11}></img>
-            </span>
-            <span className={styles.img18}>
-              <img src={img12}></img>
-            </span>
-            <span className={styles.img19}>
-              <img src={img13}></img>
-            </span>
-            <span className={styles.img20}>
-              <img src={img14}></img>
-            </span>
-            <span className={styles.img21}>
-              <img src={img15}></img>
-            </span>
-          </div>
+          <img src={fullimage} alt={fullimage}></img>
         </div>
         <div className={styles.con53}>
           <p className={styles.p6}>Integrate with any platform</p>

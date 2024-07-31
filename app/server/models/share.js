@@ -2,17 +2,32 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const shareSchema = new Schema({
-  inputText: { type: [String] },
-  inputNumber: { type: [String] },
-  inputEmail: { type: [String] },
-  inputPhone: { type: [String] },
-  inputDate: { type: [Date] },
-  inputRating: { type: [String] },
-  inputButton: { type: [String] },
+  contents: [
+    {
+      contentType: {
+        type: String,
+      },
+      order: {
+        type: Number,
+      },
+      inputValue: {
+        type: String,
+      },
+    },
+  ],
 
-  totalViews: { type: String },
-  totalStarts: { type: String },
-  completionRate: { type: String },
+  totalViews: {
+    type: String,
+    default: "0",
+  },
+  totalStarts: {
+    type: String,
+    default: "0",
+  },
+  completionRate: {
+    type: String,
+    default: "0",
+  },
 
   submitionStartTime: { type: Date },
 

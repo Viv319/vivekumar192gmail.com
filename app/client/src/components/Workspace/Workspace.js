@@ -32,9 +32,6 @@ export default function Workspace() {
   const popupHeight = 50;
   const popupSpacing = 0;
 
-  useEffect(() => {
-    // localStorage.setItem("formId", formId);
-  });
   const clickCross = () => {
     navigate("/dashboard");
   };
@@ -196,9 +193,6 @@ export default function Workspace() {
 
           localStorage.setItem("formId", result.data._id);
           setIsSaved(true);
-          // setTimeout(() => {
-          //   navigate("/dashboard");
-          // }, 3000);
         }
       }
     } catch (error) {

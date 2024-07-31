@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap");
+
 .upper {
   background-color: #18181b;
   border-bottom: 1px solid #2c2c2f;
@@ -55,7 +57,6 @@
 }
 
 .option1 {
-  /* background-color: #848890; */
   background-color: #848890;
   border-radius: 4px;
   font-family: Open Sans;
@@ -69,7 +70,7 @@
 }
 
 .option1Clicked {
-  background-color: #1a5fff; /* Your new color */
+  background-color: #1a5fff;
 }
 
 .option2 {
@@ -102,7 +103,6 @@
   border-bottom: 1px solid #2c2c2f;
   color: white;
   border-radius: 8px;
-  /* margin: 20px; */
 }
 
 .align {
@@ -159,7 +159,6 @@
   font-weight: 400;
   line-height: 21px;
   text-align: left;
-  /* gap: 1rem; */
   background-color: #1f1f23;
   width: 10rem;
   height: 2.5rem;
@@ -190,7 +189,6 @@
   margin-left: 20rem;
 }
 
-/* Workspace.module.css */
 .popup {
   position: absolute;
   background-color: #18181b;
@@ -199,7 +197,6 @@
   z-index: 1000;
   border-radius: 8px;
   border: 1px solid #18181b;
-  /* background-color: red; */
   margin-left: 50px;
 }
 

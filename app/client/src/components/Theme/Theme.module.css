@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap");
+
 .container {
   width: 100vw;
   height: 100vh;
@@ -62,7 +64,6 @@
 }
 
 .option1 {
-  /* background-color: #848890; */
   background-color: #848890;
   border-radius: 4px;
   font-family: Open Sans;
@@ -76,7 +77,7 @@
 }
 
 .option1Clicked {
-  background-color: #1a5fff; /* Your new color */
+  background-color: #1a5fff;
 }
 
 .option2 {
@@ -163,22 +164,13 @@
   height: 180px;
 }
 .selected {
-  border: 2px solid purple; /* Purple border for selected themes */
+  border: 2px solid purple;
 }
 
 .right2 {
-  /* flex: 1; */
-  /* background-color: #1e1e1e; */
   display: flex;
   justify-content: center;
   align-items: center;
-}
-
-.themePreview {
-  /* color: white;
-  font-family: Open Sans;
-  font-size: 18px;
-  text-align: center; */
 }
 
 .img11 {
@@ -197,6 +189,4 @@
   height: 92vh;
   background-color: #508c9b;
   object-fit: cover;
-  /* width: 100%;
-  height: auto; */
 }

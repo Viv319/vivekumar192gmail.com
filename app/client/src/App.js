@@ -8,10 +8,10 @@ import SettingPage from "./pages/Setting/SettingPage";
 import WorkspacePage from "./pages/WorkspacePage/WorkspacePage";
 import ThemePage from "./pages/ThemePage/ThemePage";
 import ResponsePage from "./pages/ResponsePage/ResponsePage";
-import FormbotPage from "./pages/FormbotPage/FormbotPage";
 import axios from "axios";
 import FolderPage from "./components/FolderPage/FolderPage";
 import Share from "./components/Share/Share";
+import SavedResponse from "./components/SavedResponse/SavedResponse";
 
 function App() {
   axios.defaults.withCredentials = true;
@@ -30,7 +30,8 @@ function App() {
         <Route path="/dashboard/folder" element={<FolderPage />} />
         <Route path="/share/fillForm" element={<Share />} />
         <Route path="/share/fillForm/:id" element={<Share />} />
-        {/* <Route path="/formbot" element={<FormbotPage />} /> */}
+
+        <Route path="/savedResponse" element={<SavedResponse />} />
       </Routes>
     </BrowserRouter>
   );

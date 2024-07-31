@@ -105,9 +105,6 @@ export default function Theme() {
             theme: "colored",
           });
           setIsSaved(true);
-          // setTimeout(() => {
-          //   navigate("/dashboard");
-          // }, 3000);
         }
       }
     } catch (error) {

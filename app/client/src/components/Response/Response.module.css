@@ -1,3 +1,6 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Outfit:wght@100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Outfit:wght@100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
 .container {
   width: 100vw;
   height: 100vh;
@@ -80,17 +83,69 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  /* background-color: #18171c; */
   color: white;
 }
 
+.middle {
+  width: 50vw;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.views,
+.starts,
+.completionRate {
+  width: 195.75px;
+  height: 120.83px;
+  border-radius: 16.11px;
+  background-color: #323232;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.responseContainer {
+  margin: 20px 0;
+}
+
+.responseTitle {
+  font-weight: bold;
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+}
+
+.submissionTime {
+  display: flex;
+  align-items: center;
+  font-size: 1rem;
+  margin-bottom: 10px;
+}
+
+.response {
+  display: flex;
+  flex-direction: column;
+}
+
+.responseItem {
+  display: flex;
+  align-items: center;
+  font-size: 1rem;
+  margin-bottom: 5px;
+}
+
+.inputValue {
+  margin-left: 10px;
+  font-size: 1rem;
+}
+
 .p1 {
+  margin-top: 18%;
   font-family: Inter;
   font-size: 36px;
   font-weight: 400;
   line-height: 43.57px;
   color: #69696973;
-
   width: 456px;
   height: 44px;
 }

@@ -4,14 +4,19 @@ import { fetchPopupByFormId } from "../../api/popup";
 import themeformcircle from "../../assets/images/themeformcircle.png";
 import styles from "./Share.module.css";
 import send from "../../assets/images/send.png";
+import { saveShareResponse, updateShareResponse } from "../../api/share";
 
 export default function Share() {
   const navigate = useNavigate();
-  const { id } = useParams(); // Get the dynamic segment of the URL
+  const { id } = useParams();
 
   const [shareFormShow, setShareFormShow] = useState(null);
   const [inputValues, setInputValues] = useState({});
-  const [selectedElement, setSelectedElement] = useState(null);
+  const [disabledElements, setDisabledElements] = useState({});
+  const [selectedRating, setSelectedRating] = useState({});
+  const [submissionId, setSubmissionId] = useState(null);
+
+  const [submitionStartTime, setSubmitionStartTime] = useState(null);
 
   useEffect(() => {
     if (id) {
@@ -34,13 +39,15 @@ export default function Share() {
                   "Rating Input",
                 ].includes(content.contentType)
               ) {
-                acc[`input${index}`] = ""; // Initialize with empty string or default value
+                acc[`input${index}`] = "";
               }
               return acc;
             },
             {}
           );
+
           setInputValues(initialValues);
+          setSubmitionStartTime(new Date().toISOString());
         }
         console.log("result from fetchPopupByFormId: ", result);
       } catch (error) {
@@ -58,12 +65,22 @@ export default function Share() {
   };
 
   const handleElementClick = (element) => {
-    setSelectedElement(element);
+    setDisabledElements((prev) => ({
+      ...prev,
+      [element]: true,
+    }));
+    handleSave();
+  };
+
+  const handleRatingClick = (index, rating) => {
+    setSelectedRating((prev) => ({
+      ...prev,
+      [index]: rating,
+    }));
   };
 
   const renderContent = (content, index) => {
-    const isSelected = (element) =>
-      selectedElement === element ? styles.selected : "";
+    const isDisabled = (element) => disabledElements[element];
 
     switch (content.contentType) {
       case "Text":
@@ -81,8 +98,11 @@ export default function Share() {
               src={content.inputValue}
               alt="content"
               style={{ maxWidth: "100%" }}
-              className={isSelected(`image${index}`)}
-              onClick={() => handleElementClick(`image${index}`)}
+              className={isDisabled(`image${index}`) ? styles.disabled : ""}
+              onClick={() => {
+                if (!isDisabled(`image${index}`))
+                  handleElementClick(`image${index}`);
+              }}
             />
           </>
         );
@@ -104,8 +124,11 @@ export default function Share() {
               src={content.inputValue}
               alt="gif"
               style={{ maxWidth: "100%" }}
-              className={isSelected(`gif${index}`)}
-              onClick={() => handleElementClick(`gif${index}`)}
+              className={isDisabled(`gif${index}`) ? styles.disabled : ""}
+              onClick={() => {
+                if (!isDisabled(`gif${index}`))
+                  handleElementClick(`gif${index}`);
+              }}
             />
           </>
         );
@@ -118,14 +141,18 @@ export default function Share() {
               className={styles.textInput}
               value={inputValues[`input${index}`] || ""}
               onChange={(e) => handleInputChange(e, index)}
+              disabled={isDisabled(`textInput${index}`)}
             />
-            <div className={styles.img1}>
-              <img
-                src={send}
-                alt="send"
-                className={isSelected(`textInput${index}`)}
-                onClick={() => handleElementClick(`textInput${index}`)}
-              />
+            <div
+              className={`${styles.img1} ${
+                isDisabled(`textInput${index}`) ? styles.disabled : ""
+              }`}
+              onClick={() => {
+                if (!isDisabled(`textInput${index}`))
+                  handleElementClick(`textInput${index}`);
+              }}
+            >
+              <img src={send} alt="send" />
             </div>
           </div>
         );
@@ -138,14 +165,18 @@ export default function Share() {
               placeholder="Enter a number"
               value={inputValues[`input${index}`] || ""}
               onChange={(e) => handleInputChange(e, index)}
+              disabled={isDisabled(`numberInput${index}`)}
             />
-            <div className={styles.img2}>
-              <img
-                src={send}
-                alt="send"
-                className={isSelected(`numberInput${index}`)}
-                onClick={() => handleElementClick(`numberInput${index}`)}
-              />
+            <div
+              className={`${styles.img2} ${
+                isDisabled(`numberInput${index}`) ? styles.disabled : ""
+              }`}
+              onClick={() => {
+                if (!isDisabled(`numberInput${index}`))
+                  handleElementClick(`numberInput${index}`);
+              }}
+            >
+              <img src={send} alt="send" />
             </div>
           </div>
         );
@@ -158,14 +189,18 @@ export default function Share() {
               placeholder="Enter your email"
               value={inputValues[`input${index}`] || ""}
               onChange={(e) => handleInputChange(e, index)}
+              disabled={isDisabled(`emailInput${index}`)}
             />
-            <div className={styles.img3}>
-              <img
-                src={send}
-                alt="send"
-                className={isSelected(`emailInput${index}`)}
-                onClick={() => handleElementClick(`emailInput${index}`)}
-              />
+            <div
+              className={`${styles.img3} ${
+                isDisabled(`emailInput${index}`) ? styles.disabled : ""
+              }`}
+              onClick={() => {
+                if (!isDisabled(`emailInput${index}`))
+                  handleElementClick(`emailInput${index}`);
+              }}
+            >
+              <img src={send} alt="send" />
             </div>
           </div>
         );
@@ -178,14 +213,18 @@ export default function Share() {
               placeholder="Enter your phone"
               value={inputValues[`input${index}`] || ""}
               onChange={(e) => handleInputChange(e, index)}
+              disabled={isDisabled(`phoneInput${index}`)}
             />
-            <div className={styles.img4}>
-              <img
-                src={send}
-                alt="send"
-                className={isSelected(`phoneInput${index}`)}
-                onClick={() => handleElementClick(`phoneInput${index}`)}
-              />
+            <div
+              className={`${styles.img4} ${
+                isDisabled(`phoneInput${index}`) ? styles.disabled : ""
+              }`}
+              onClick={() => {
+                if (!isDisabled(`phoneInput${index}`))
+                  handleElementClick(`phoneInput${index}`);
+              }}
+            >
+              <img src={send} alt="send" />
             </div>
           </div>
         );
@@ -198,14 +237,18 @@ export default function Share() {
               placeholder="Select a date"
               value={inputValues[`input${index}`] || ""}
               onChange={(e) => handleInputChange(e, index)}
+              disabled={isDisabled(`dateInput${index}`)}
             />
-            <div className={styles.img5}>
-              <img
-                src={send}
-                alt="send"
-                className={isSelected(`dateInput${index}`)}
-                onClick={() => handleElementClick(`dateInput${index}`)}
-              />
+            <div
+              className={`${styles.img5} ${
+                isDisabled(`dateInput${index}`) ? styles.disabled : ""
+              }`}
+              onClick={() => {
+                if (!isDisabled(`dateInput${index}`))
+                  handleElementClick(`dateInput${index}`);
+              }}
+            >
+              <img src={send} alt="send" />
             </div>
           </div>
         );
@@ -216,21 +259,39 @@ export default function Share() {
               {[1, 2, 3, 4, 5].map((rating) => (
                 <div
                   key={rating}
-                  className={`${styles[`rating${rating}`]} ${isSelected(
-                    `rating${rating}`
-                  )}`}
-                  onClick={() => handleElementClick(`rating${rating}`)}
+                  className={`${styles[`rating${rating}`]} ${
+                    selectedRating[index] === rating ? styles.selected : ""
+                  } ${
+                    isDisabled(`ratingInput${index}`) &&
+                    selectedRating[index] !== rating
+                      ? styles.disabled
+                      : ""
+                  }`}
+                  onClick={() => {
+                    if (!isDisabled(`ratingInput${index}`))
+                      handleRatingClick(index, rating);
+                  }}
                 >
                   {rating}
                 </div>
               ))}
             </div>
-            <div className={styles.img6}>
-              <img
-                src={send}
-                alt="send"
-                className={isSelected(`ratingInput${index}`)}
-                onClick={() => handleElementClick(`ratingInput${index}`)}
+            <div
+              className={`${styles.img6} ${
+                isDisabled(`ratingInput${index}`) ? styles.disabled : ""
+              }`}
+              onClick={() => {
+                if (!isDisabled(`ratingInput${index}`))
+                  handleElementClick(`ratingInput${index}`);
+              }}
+            >
+              <input
+                style={{
+                  backgroundColor: "#053EC4",
+                  color: "white",
+                  border: "0px",
+                  outline: "none",
+                }}
               />
             </div>
           </div>
@@ -238,7 +299,15 @@ export default function Share() {
       case "Button":
         return (
           <div className={styles.bigButton}>
-            <div className={styles.button}>
+            <div
+              className={`${styles.img6} ${
+                isDisabled(`button${index}`) ? styles.disabled : ""
+              }`}
+              onClick={() => {
+                if (!isDisabled(`button${index}`))
+                  handleElementClick(`button${index}`);
+              }}
+            >
               <input
                 style={{
                   backgroundColor: "#053EC4",
@@ -265,6 +334,66 @@ export default function Share() {
         return styles.blueTheme;
       default:
         return "";
+    }
+  };
+
+  const handleSave = async () => {
+    try {
+      const updatedContents = shareFormShow.contents.map((content, i) => {
+        if (
+          [
+            "Text Input",
+            "Number Input",
+            "Email Input",
+            "Phone Input",
+            "Date Input",
+            "Rating Input",
+            "Button",
+          ].includes(content.contentType)
+        ) {
+          return {
+            ...content,
+            inputValue:
+              inputValues[`input${i}`] ||
+              selectedRating[i] ||
+              content.inputValue,
+          };
+        }
+        return content;
+      });
+
+      const totalViews = shareFormShow.totalViews + 1;
+
+      if (!submissionId) {
+        // If no submissionId, save new entry
+        const response = await saveShareResponse({
+          contents: updatedContents,
+          totalViews,
+          totalStarts: shareFormShow.totalStarts,
+          completionRate: shareFormShow.completionRate,
+          submitionStartTime,
+          formId: id,
+        });
+
+        console.log(response);
+
+        setSubmissionId(response); // Save the ID for future updates
+        console.log("Form response saved successfully:", response);
+      } else {
+        // Update existing entry
+        localStorage.setItem("submissionId", submissionId);
+        await updateShareResponse({
+          contents: updatedContents,
+          totalViews,
+          totalStarts: shareFormShow.totalStarts,
+          completionRate: shareFormShow.completionRate,
+          submitionStartTime,
+          // formId: id,
+        });
+        console.log("Form response updated successfully");
+      }
+    } catch (error) {
+      console.error("Error saving form response:", error);
     }
   };
 

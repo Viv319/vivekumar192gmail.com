@@ -4,8 +4,6 @@
   padding: 0;
   margin: 0;
   box-sizing: border-box;
-  /* overflow-x: hidden;
-  overflow-y: hidden; */
 }
 
 .fullPage {
@@ -13,14 +11,6 @@
   height: 100vh;
   background-color: #18181b;
   color: white;
-  /* overflow-x: hidden; */
-  /* overflow-y: hidden; */
-}
-
-html,
-body {
-  /* overflow-x: hidden; */
-  /* overflow-y: hidden; */
 }
 
 .upper {
@@ -113,25 +103,8 @@ body {
 }
 
 .folders {
-  /* margin-top: 20px;
-  z-index: 10000;
-  background: #f0f0f0; */
-  /* color: black; */
-  /* width: 157px;
-  height: 20px;
-  gap: 8px; */
-  /* background-color: white; */
-  /* margin-left: 20px; */
-  /* background-color: blue;
-  width: auto;
-  height: auto;
-  cursor: pointer; */
-  /* background-color: red; */
   width: 75vw;
-  /* height: 10; */
   display: flex;
-  /* justify-content: center;
-  align-items: center; */
   margin-top: -74px;
   margin-left: 170px;
   flex-wrap: wrap;
@@ -202,25 +175,17 @@ body {
   display: flex;
   margin-top: -14rem;
   margin-left: 220px;
-  /* background-color: #1a5fff; */
   width: 70vw;
   height: 30vh;
-  /* margin-top: 40px; */
   border-radius: 6px;
   flex-wrap: wrap;
-  /* justify-content: center;
-  align-items: center; */
 }
 
 .formdiv2 {
   color: white;
-  /* background-color: red; */
 
   width: 11vw;
   height: 100%;
-  /* padding-left: 8px;
-  padding-bottom: 16px; */
-  /* padding-right: 8px; */
   padding-top: 5.5rem;
   margin-bottom: 20px;
   font-family: Open Sans;
@@ -231,7 +196,6 @@ body {
   border-radius: 6px;
   color: white;
   margin-left: 20px;
-  /* flex-wrap: wrap; */
   background-color: #8b8b8d;
   display: flex;
   justify-content: center;

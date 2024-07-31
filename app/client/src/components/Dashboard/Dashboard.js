@@ -29,7 +29,6 @@ export default function Home() {
 
   const userId = localStorage.getItem("userId");
   const usernameId = userId ? userId.replace(/"/g, "") : "";
-  // localStorage.removeItem("folderId");
   const closeDeletePopup = () => {
     setisFormDeletePopupVisible(false);
     setIsFolderDeletePopupVisible(false);
@@ -52,7 +51,6 @@ export default function Home() {
       try {
         const result = await getFolderByUserId(usernameId);
         setFolderDetails(result);
-        // console.log("sdfsdafsd " + folderDetails.name);
       } catch (error) {
         console.error("Error fetching folder details:", error);
       }
@@ -173,9 +171,6 @@ export default function Home() {
       try {
         const result = await deleteForm(formId);
         console.log("form deleted successfully ", result);
-        // setshowFormData((prevDetails) =>
-        //   prevDetails.filter((item) => item._id!== folderId)
-        // );
       } catch (error) {
         console.log("Error deleting form: ", error);
       }
@@ -188,32 +183,14 @@ export default function Home() {
     setisFormDeletePopupVisible(false);
 
     window.location.reload();
-
-    // un comment below line once development completes
-    // localStorage.removeItem("formId");
   };
-  // const deleteFolderById = async (folderId) => {
-  //   try {
-  //     const result = await deleteFolder(folderId);
-  //     console.log("folder deleted successfully");
-  //     console.log(result);
-  //     // navigate("/dashboard");
-  //     // window.location.reload();
-  //   } catch (error) {
-  //     console.log("Error deleting folder: ", error);
-  //   }
-  // };
   const handleFolderDeleteConfirms = async () => {
-    // navigate("/dashoard/folder");
     const folderId = localStorage.getItem("folderId");
 
     const deleteFolderById = async (folderId) => {
       try {
         const result = await deleteFolder(folderId);
         console.log("folder deleted successfully", result);
-        // console.log(result);
-        // navigate("/dashboard");
-        // window.location.reload();
       } catch (error) {
         console.log("Error deleting folder: ", error);
       }
@@ -225,6 +202,10 @@ export default function Home() {
     setIsFolderDeletePopupVisible(false);
 
     window.location.reload();
+  };
+
+  const openSavedResponse = () => {
+    navigate("/savedResponse");
   };
 
   return (
@@ -259,7 +240,6 @@ export default function Home() {
       </div>
       <div className={styles.body}>
         <div className={styles.container}>
-          {/* <div className={styles.bigdiv}> */}
           <div className={styles.folder} onClick={openPopup}>
             <img
               src={folder}
@@ -284,7 +264,6 @@ export default function Home() {
                     className={styles.delteIcon}
                     onClick={() => {
                       handleFolderDelete(folder._id);
-                      // handleFormDelete(folder._id)
                     }}
                   ></img>
                 </>
@@ -301,10 +280,14 @@ export default function Home() {
         {showFormData && showFormData.length > 0 ? (
           <div className={styles.formdiv1}>
             {showFormData
-              .filter((form) => form.folderId === null) // Filter items where folderId is null
+              .filter((form) => form.folderId === null)
               .map((form, index) => (
                 <>
-                  <div key={index} className={styles.formdiv2}>
+                  <div
+                    key={index}
+                    className={styles.formdiv2}
+                    onClick={openSavedResponse}
+                  >
                     {form.name}
                   </div>
                   <img
@@ -349,13 +332,11 @@ export default function Home() {
       {isFormDeletePopupVisible && (
         <div className={styles.popup}>
           <div className={styles.popupContent}>
-            {/* <h2 className={styles.h2}>Delete Folder</h2> */}
             <div className={styles.h3}>
               Are you sure you want to delete this Form?
             </div>
             <div className={styles.popupActions}>
               <button
-                // onClick={handleDeleteFolder}
                 className={styles.saveButton}
                 onClick={handleFormDeleteConfirms}
               >
@@ -375,13 +356,11 @@ export default function Home() {
       {isFolderDeletePopupVisible && (
         <div className={styles.popup}>
           <div className={styles.popupContent}>
-            {/* <h2 className={styles.h2}>Delete Folder</h2> */}
             <div className={styles.h3}>
               Are you sure you want to delete this Folder?
             </div>
             <div className={styles.popupActions}>
               <button
-                // onClick={handleDeleteFolder}
                 className={styles.saveButton}
                 onClick={handleFolderDeleteConfirms}
               >

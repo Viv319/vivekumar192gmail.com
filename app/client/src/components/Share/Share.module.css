@@ -1,9 +1,9 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap");
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  /* overflow-x: hidden; */
-  /* overflow-y: hidden; */
 }
 
 .text1 {
@@ -75,7 +75,11 @@
 }
 
 .selected {
-  background-color: #ff8e21;
+  background-color: #777777;
+  pointer-events: none;
+}
+.disabled {
+  background-color: #777777;
   pointer-events: none;
 }
 .starRating,
