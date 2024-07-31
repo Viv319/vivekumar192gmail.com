@@ -37,7 +37,7 @@ export default function Theme() {
 
       navigator.clipboard.writeText(
         // `http://localhost:3000/share/fillForm/${localStorage.getItem("formId")}`
-        `https://vivekumar192-gmail-com-client.vercel.app/fillForm/${localStorage.getItem(
+        `https://vivekumar192-gmail-com-client.vercel.app/share/fillForm/${localStorage.getItem(
           "formId"
         )}`
       );
