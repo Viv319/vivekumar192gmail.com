@@ -1,6 +1,6 @@
 import axios from "axios";
 const backendUrl = `https://vivekumar192-server.vercel.app/api/v1/auth`;
-// const backendUrl =`http://localhost:3001/api/v1/auth`;
+// const backendUrl = `http://localhost:3001/api/v1/auth`;
 
 export const registerUser = async ({ email, password, name }) => {
   try {

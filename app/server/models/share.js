@@ -17,16 +17,16 @@ const shareSchema = new Schema({
   ],
 
   totalViews: {
-    type: String,
-    default: "0",
+    type: Number,
+    default: 0,
   },
   totalStarts: {
-    type: String,
-    default: "0",
+    type: Number,
+    default: 0,
   },
   completionRate: {
-    type: String,
-    default: "0",
+    type: Number,
+    default: 0,
   },
 
   submitionStartTime: { type: Date },

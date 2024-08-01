@@ -46,6 +46,7 @@ exports.updateShareForm = async (req, res, next) => {
       totalStarts,
       completionRate,
       submitionStartTime,
+      // formId,
     } = req.body;
 
     // const folderId = req.body.folderId;
@@ -57,6 +58,7 @@ exports.updateShareForm = async (req, res, next) => {
       totalStarts,
       completionRate,
       submitionStartTime,
+      // formId,
     });
 
     // const savedForm = await form.save();
@@ -85,14 +87,22 @@ exports.getShareFormResponse = async (req, res) => {
 exports.incrementShareFormStarts = async (req, res) => {
   try {
     const { formId } = req.params;
-    const form = await Share.find(formId);
-    if (!form) {
-      return res.status(404).json({ message: "Form not found" });
+
+    // Find the document and increment the view count
+    const updatedForm = await Share.findByIdAndUpdate(
+      formId,
+      { $inc: { totalViews: 1 } },
+      { new: true }
+    );
+
+    if (!updatedForm) {
+      console.log("formid is = ", formId);
+      return res.status(404).json({ error: "Form not found" });
     }
-    form.totalViews = (parseInt(form.totalViews) + 1).toString(); // Increment view count
-    await form.save();
-    res.status(200).json({ message: "View count incremented" });
-  } catch (err) {
-    res.status(500).json({ message: "Internal Server Error" });
+
+    res.status(200).json(updatedForm);
+  } catch (error) {
+    console.error("Error updating view count:", error);
+    res.status(500).json({ error: "Internal Server Error" });
   }
 };

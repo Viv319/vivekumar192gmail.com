@@ -4,7 +4,11 @@ import { fetchPopupByFormId } from "../../api/popup";
 import themeformcircle from "../../assets/images/themeformcircle.png";
 import styles from "./Share.module.css";
 import send from "../../assets/images/send.png";
-import { saveShareResponse, updateShareResponse } from "../../api/share";
+import {
+  saveShareResponse,
+  updateShareResponse,
+  incrementViewCount,
+} from "../../api/share";
 
 export default function Share() {
   const navigate = useNavigate();
@@ -17,6 +21,7 @@ export default function Share() {
   const [submissionId, setSubmissionId] = useState(null);
 
   const [submitionStartTime, setSubmitionStartTime] = useState(null);
+  const [visitCount, setVisitCount] = useState(0);
 
   useEffect(() => {
     if (id) {
@@ -50,6 +55,21 @@ export default function Share() {
           setSubmitionStartTime(new Date().toISOString());
         }
         console.log("result from fetchPopupByFormId: ", result);
+
+        // ................................
+
+        const i = localStorage.getItem("shareFormId");
+        if (i) {
+          const incResult = await incrementViewCount(id); // Use form ID for updating view count
+          console.log("Increment result:", incResult);
+          // setShareData((prevData) =>
+          //   prevData.map((form) =>
+          //     form._id === i
+          //       ? { ...form, totalViews: incResult.totalViews }
+          //       : form
+          //   )
+          // );
+        }
       } catch (error) {
         console.error("Error fetching popup details:", error);
       }
@@ -99,10 +119,10 @@ export default function Share() {
               alt="content"
               style={{ maxWidth: "100%" }}
               className={isDisabled(`image${index}`) ? styles.disabled : ""}
-              onClick={() => {
-                if (!isDisabled(`image${index}`))
-                  handleElementClick(`image${index}`);
-              }}
+              // onClick={() => {
+              //   if (!isDisabled(`image${index}`))
+              //     handleElementClick(`image${index}`);
+              // }}
             />
           </>
         );
@@ -125,10 +145,10 @@ export default function Share() {
               alt="gif"
               style={{ maxWidth: "100%" }}
               className={isDisabled(`gif${index}`) ? styles.disabled : ""}
-              onClick={() => {
-                if (!isDisabled(`gif${index}`))
-                  handleElementClick(`gif${index}`);
-              }}
+              // onClick={() => {
+              //   if (!isDisabled(`gif${index}`))
+              //     handleElementClick(`gif${index}`);
+              // }}
             />
           </>
         );
@@ -300,7 +320,7 @@ export default function Share() {
         return (
           <div className={styles.bigButton}>
             <div
-              className={`${styles.img6} ${
+              className={`${styles.img7} ${
                 isDisabled(`button${index}`) ? styles.disabled : ""
               }`}
               onClick={() => {
@@ -375,9 +395,11 @@ export default function Share() {
           formId: id,
         });
 
-        console.log(response);
+        console.log(response.data._id);
 
-        setSubmissionId(response); // Save the ID for future updates
+        setSubmissionId(response.data._id); // Save the ID for future updates
+
+        localStorage.setItem("submissionId", response.data._id);
         console.log("Form response saved successfully:", response);
       } else {
         // Update existing entry

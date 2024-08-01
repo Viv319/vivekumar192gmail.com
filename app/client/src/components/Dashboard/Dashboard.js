@@ -204,8 +204,9 @@ export default function Home() {
     window.location.reload();
   };
 
-  const openSavedResponse = () => {
-    navigate("/savedResponse");
+  const openSavedResponse = (formId) => {
+    localStorage.setItem("shareFolderId", formId);
+    navigate(`/savedResponse/${formId}`);
   };
 
   return (
@@ -286,7 +287,7 @@ export default function Home() {
                   <div
                     key={index}
                     className={styles.formdiv2}
-                    onClick={openSavedResponse}
+                    onClick={() => openSavedResponse(form._id)}
                   >
                     {form.name}
                   </div>

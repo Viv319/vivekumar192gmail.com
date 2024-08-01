@@ -57,8 +57,9 @@ export default function Home() {
     navigate("/setting");
   };
 
-  const openSavedResponse = () => {
-    navigate("/savedResponse");
+  const openSavedResponse = (formId) => {
+    localStorage.setItem("shareFolderId", formId);
+    navigate(`/savedResponse/${formId}`);
   };
 
   const clickBot = () => {
@@ -155,7 +156,7 @@ export default function Home() {
                 <div
                   key={index}
                   className={styles.formdiv2}
-                  onClick={openSavedResponse}
+                  onClick={() => openSavedResponse(form._id)}
                 >
                   {form.name}
                   {localStorage.setItem("formId", form._id)}

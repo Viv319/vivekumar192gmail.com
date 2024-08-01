@@ -31,7 +31,7 @@ function App() {
         <Route path="/share/fillForm" element={<Share />} />
         <Route path="/share/fillForm/:id" element={<Share />} />
 
-        <Route path="/savedResponse" element={<SavedResponse />} />
+        <Route path="/savedResponse/:id" element={<SavedResponse />} />
       </Routes>
     </BrowserRouter>
   );

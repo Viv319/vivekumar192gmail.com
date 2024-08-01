@@ -359,48 +359,52 @@ export default function Workspace() {
           <div className={styles.start}>
             <img src={vector} alt="Start" /> Start
           </div>
-        </div>
-        <ToastContainer></ToastContainer>
-      </div>
-
-      {popups.map((popup, index) => (
-        <div
-          key={popup.id}
-          className={styles.popup}
-          style={{
-            top: `${
-              popup.position.top + index * (popupHeight + popupSpacing) - 370
-            }px`,
-            left: `${popup.position.left + 270}px`,
-          }}
-        >
-          <div className={styles.popupContent}>
-            <div
-              className={styles.deleteIng}
-              onClick={() => {
-                handleClosePopup(popup.id);
-              }}
-            >
-              <img src={delete1} alt="Delete" />
-            </div>
-            <p className={styles.lastP}>
-              {popup.content} {popup.count}
-            </p>
-            {noInputRequired.includes(popup.content) ? (
-              <p className={styles.hintText}>
-                Hint: User will input a text on his form
-              </p>
-            ) : (
-              <input
-                type="text"
-                className={styles.inputlast}
-                placeholder={getPlaceholderText(popup.content)}
-                onChange={(e) => handleInputChange(popup.id, e)}
-              />
-            )}
+          <div className={styles.popups}>
+            {popups.map((popup, index) => (
+              <div
+                key={popup.id}
+                className={styles.popup}
+                style={{
+                  top: `${
+                    popup.position.top +
+                    index * (popupHeight + popupSpacing) -
+                    370
+                  }px`,
+                  left: `${popup.position.left + 270}px`,
+                }}
+              >
+                <div className={styles.popupContent}>
+                  <div
+                    className={styles.deleteIng}
+                    onClick={() => {
+                      handleClosePopup(popup.id);
+                    }}
+                  >
+                    <img src={delete1} alt="Delete" />
+                  </div>
+                  <p className={styles.lastP}>
+                    {popup.content} {popup.count}
+                  </p>
+                  {noInputRequired.includes(popup.content) ? (
+                    <p className={styles.hintText}>
+                      Hint: User will input a text on his form
+                    </p>
+                  ) : (
+                    <input
+                      type="text"
+                      className={styles.inputlast}
+                      placeholder={getPlaceholderText(popup.content)}
+                      onChange={(e) => handleInputChange(popup.id, e)}
+                    />
+                  )}
+                </div>
+              </div>
+            ))}
           </div>
         </div>
-      ))}
+      </div>
+
+      <ToastContainer></ToastContainer>
     </div>
   );
 }

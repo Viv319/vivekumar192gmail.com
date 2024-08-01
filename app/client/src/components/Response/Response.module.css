@@ -80,9 +80,9 @@
 }
 
 .body {
-  display: flex;
+  /* display: block;
   justify-content: center;
-  align-items: center;
+  align-items: center; */
   color: white;
 }
 
@@ -105,10 +105,30 @@
   align-items: center;
 }
 
-.responseContainer {
+.responseContainer2 {
   margin: 20px 0;
+  display: inline-block;
+  /* width: 80vw; */
 }
 
+.sub {
+  display: inline-flex;
+  /* width: 20vw; */
+  align-items: center;
+  font-size: 1rem;
+  margin-bottom: 5px;
+  margin-right: 20px;
+}
+
+.responseContainer {
+  /* display: inline; */
+  margin-left: 80px;
+}
+
+.resp {
+  display: inline-block;
+  margin-right: 20px;
+}
 .responseTitle {
   font-weight: bold;
   font-size: 1.5rem;
@@ -116,25 +136,28 @@
 }
 
 .submissionTime {
-  display: flex;
+  display: inline-block;
   align-items: center;
   font-size: 1rem;
   margin-bottom: 10px;
 }
 
 .response {
-  display: flex;
+  display: inline;
   flex-direction: column;
+  width: 100%;
 }
 
 .responseItem {
-  display: flex;
+  display: inline;
+  /* width: 20vw; */
   align-items: center;
   font-size: 1rem;
   margin-bottom: 5px;
 }
 
 .inputValue {
+  display: inline;
   margin-left: 10px;
   font-size: 1rem;
 }
@@ -148,4 +171,5 @@
   color: #69696973;
   width: 456px;
   height: 44px;
+  margin-left: 34vw;
 }

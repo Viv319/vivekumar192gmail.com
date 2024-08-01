@@ -1,5 +1,12 @@
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap");
 
+.container {
+  max-width: 100vw;
+  height: 100vh;
+  /* height: auto; */
+  overflow-y: auto;
+}
+
 .upper {
   background-color: #18181b;
   border-bottom: 1px solid #2c2c2f;
@@ -93,6 +100,7 @@
   width: 100vw;
   background-color: #1f1f23;
   padding: 15px;
+  overflow-y: auto;
 }
 
 .left {
@@ -168,8 +176,14 @@
   margin-left: 12px;
 }
 
+/* .middleright {
+  display: inline-block;
+} */
+
 .middleright {
   display: inline-block;
+  overflow-y: auto;
+  max-height: 100%;
 }
 
 .start {
@@ -188,9 +202,13 @@
   top: 8rem;
   margin-left: 20rem;
 }
-
+.popups {
+  height: auto;
+  overflow-y: auto;
+}
 .popup {
   position: absolute;
+  /* position: relative; */
   background-color: #18181b;
   padding: 10px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
@@ -198,6 +216,7 @@
   border-radius: 8px;
   border: 1px solid #18181b;
   margin-left: 50px;
+  /* overflow-y: auto; */
 }
 
 .popupContent {
@@ -247,4 +266,10 @@
 
 .hintText {
   color: #555555;
+}
+
+.popupContainer {
+  /* position: relative; */
+  /* max-height:  */
+  /* overflow-y: auto; */
 }

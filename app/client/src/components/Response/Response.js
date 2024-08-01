@@ -2,11 +2,12 @@ import React, { useState, useEffect } from "react";
 import styles from "./Response.module.css";
 import { useNavigate } from "react-router-dom";
 import close from "../../assets/images/close.png";
-import { getSahredFormResponse } from "../../api/share";
+import { getFormResponse, incrementViewCount } from "../../api/share";
 
 export default function Response() {
   const navigate = useNavigate();
   const [shareData, setShareData] = useState([]);
+  const [stats, setStats] = useState();
 
   const clickSetting = () => {
     navigate("/setting");
@@ -27,9 +28,14 @@ export default function Response() {
   useEffect(() => {
     const fetchShareResponse = async () => {
       try {
-        const result = await getSahredFormResponse();
+        const result = await getFormResponse();
         setShareData(result.data);
         console.log("result from getSahredFormResponse: ", result);
+
+        // Increment view count for each form
+        // result.data.forEach(async (form) => {
+
+        // });
       } catch (error) {
         console.log("Error fetching share data: ", error);
       }
@@ -37,6 +43,17 @@ export default function Response() {
     fetchShareResponse();
   }, []);
 
+  const allowedInputTypes = [
+    "Text Input",
+    "Number Input",
+    "Email Input",
+    "Phone Input",
+    "Date Input",
+    "Rating Input",
+    "Button",
+  ];
+
+  // const uniqueContentTypes = new Set();
   return (
     <div className={styles.container}>
       <div className={styles.upper}>
@@ -64,39 +81,92 @@ export default function Response() {
         </div>
       </div>
       <div className={styles.body}>
-        {shareData.length > 0 ? (
-          shareData.map((form, index) => (
-            <div key={index} className={styles.responseContainer}>
-              <p className={styles.middle}>
-                <p className={styles.views}>Total Views: {form.totalViews}</p>
-                <p className={styles.starts}>
-                  Total Starts: {form.totalStarts}
-                </p>
-                <p className={styles.completionRate}>
-                  Completion Rate: {form.completionRate}
-                </p>
+        <div className={styles.responseContainer1}>
+          {shareData.length > 0 && (
+            <p className={styles.middle}>
+              <p className={styles.views}>
+                Total Views: {shareData[0].totalViews}{" "}
+                {/* Display the view count */}
               </p>
-              <div className={styles.responseContainer}>
-                <p className={styles.responseTitle}>Response:</p>
-                <div className={styles.submissionTime}>
-                  Submission Start Time:{" "}
-                  {new Date(form.submitionStartTime).toLocaleDateString()}
+              <p className={styles.starts}>
+                {/* Total Starts: {form.totalStarts} */}
+                stats
+              </p>
+              <p className={styles.completionRate}>
+                {/* Completion Rate: {form.completionRate} */}
+                completion rate
+              </p>
+            </p>
+          )}
+        </div>
+        <div className={styles.responseContainer2}>
+          <div className={styles.sub}>submitted at</div>
+          {shareData.length > 0 ? (
+            shareData.map((form, index) => (
+              <div key={index} className={styles.responseContainer}>
+                <div>
+                  {form.contents
+                    .filter((content) =>
+                      allowedInputTypes.includes(content.contentType)
+                    )
+                    .map((content, index) => {
+                      // if (uniqueContentTypes.has(content.contentType)) {
+                      //   return null; // Skip this content if it's already been printed
+                      // }
+
+                      // uniqueContentTypes.add(content.contentType); // Add the contentType to the set
+
+                      return (
+                        <div key={index} className={styles.responseItem}>
+                          <p className={styles.inputValue}>
+                            {content.contentType} {content.order}
+                          </p>
+                        </div>
+                      );
+                    })}
                 </div>
+                <div className={styles.resp}> {index + 1} </div>
+                <div className={styles.submissionTime}>
+                  {/* {index + 1} */}
+                  {"     "}{" "}
+                  {new Date(form.submitionStartTime).toLocaleDateString(
+                    "en-IN",
+                    {
+                      timeZone: "Asia/Kolkata",
+                      month: "long",
+                      day: "numeric",
+                    }
+                  )}
+                  ,{" "}
+                  {new Date(form.submitionStartTime)
+                    .toLocaleTimeString("en-IN", {
+                      timeZone: "Asia/Kolkata",
+                      hour: "numeric",
+                      minute: "numeric",
+                      hour12: true,
+                    })
+                    .toLowerCase()}
+                </div>
+
                 <div className={styles.response}>
-                  {form.contents.map((content, index) => (
-                    <div key={index} className={styles.responseItem}>
-                      <p className={styles.inputValue}>
-                        <strong>Value:</strong> {content.inputValue}
-                      </p>
-                    </div>
-                  ))}
+                  {form.contents
+                    .filter((content) =>
+                      allowedInputTypes.includes(content.contentType)
+                    )
+                    .map((content, index) => (
+                      <div key={index} className={styles.responseItem}>
+                        <p className={styles.inputValue}>
+                          {content.inputValue}
+                        </p>
+                      </div>
+                    ))}
                 </div>
               </div>
-            </div>
-          ))
-        ) : (
-          <p className={styles.p1}>No Response yet collected</p>
-        )}
+            ))
+          ) : (
+            <p className={styles.p1}>No Response yet collected</p>
+          )}
+        </div>
       </div>
     </div>
   );

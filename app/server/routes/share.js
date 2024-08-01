@@ -7,14 +7,10 @@ router.post("/shareForm", shareFormController.createShareForm);
 
 router.patch("/shareFormUpdate/:id", shareFormController.updateShareForm);
 
-router.get(
-  "/getSharedForms/:formId",
-  verifyToken,
-  shareFormController.getShareFormResponse
-);
+router.get("/getSharedForms/:formId", shareFormController.getShareFormResponse);
 
 router.patch(
-  "/incrementviews/:formId",
+  "/incrementViewCount/:formId",
   shareFormController.incrementShareFormStarts
 );
 
