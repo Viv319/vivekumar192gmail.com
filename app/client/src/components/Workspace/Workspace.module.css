@@ -117,6 +117,7 @@
 .align {
   margin-top: 5rem;
   margin-left: 1rem;
+  /* gap: 5px; */
 }
 
 .align2 {
@@ -131,6 +132,7 @@
   line-height: 21px;
   text-align: left;
   margin-left: 10px;
+  margin-right: 10px;
   margin-bottom: 5px;
 }
 
@@ -142,6 +144,7 @@
   display: flex;
   justify-content: space-around;
   align-items: center;
+  margin-right: 10px;
 }
 
 .imageCommon {
@@ -171,6 +174,7 @@
   background-color: #1f1f23;
   width: 10rem;
   height: 2.5rem;
+  margin-left: 10px;
 }
 
 .common11 {

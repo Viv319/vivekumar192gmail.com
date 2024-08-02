@@ -426,7 +426,7 @@ body {
   align-items: center;
   position: relative;
 }
-.img23,
+/* .img23,
 .img24,
 .img25,
 .img26,
@@ -500,6 +500,13 @@ body {
   text-align: left;
   margin-left: 30%;
   margin-top: 3rem;
+} */
+
+.container701,
+.container7 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .imagesList1,

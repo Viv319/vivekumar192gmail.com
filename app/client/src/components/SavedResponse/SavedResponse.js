@@ -70,7 +70,7 @@ export default function SavedResponse() {
         </div>
       </div>
       <div className={styles.body}>
-        <h1>Responses for Form {formId}</h1>
+        {/* <h1>Responses for Form {formId}</h1> */}
         <div className={styles.responseContainer1}>
           {shareData.length > 0 && (
             <p className={styles.middle}>

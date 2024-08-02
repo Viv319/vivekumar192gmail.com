@@ -29,6 +29,7 @@ import image32 from "../../assets/images/SVG.png";
 import image33 from "../../assets/images/Container.png";
 import { useNavigate } from "react-router-dom";
 import fullimage from "../../assets/images/fullimage.png";
+import display from "../../assets/images/display.png";
 
 export default function Landing() {
   const navigate = useNavigate();
@@ -165,89 +166,7 @@ export default function Landing() {
         </div>
       </div>
       <div className={styles.container7}>
-        <p className={styles.p11}>And many more features</p>
-        <p className={styles.p12}>
-          Typebot makes form building easy and comes with powerful features
-        </p>
-        <div className={styles.container71}>
-          <div className={styles.container711}>
-            <div className={styles.img23}>
-              <img src={img17}></img>
-            </div>
-            <p className={styles.p13}>Hidden fields</p>
-            <p className={styles.p14}>
-              Include data in your form URL to segment your user and use its
-              data directly in your form.
-            </p>
-          </div>
-          <div className={styles.container712}>
-            <div className={styles.img24}>
-              <img src={image18}></img>
-            </div>
-            <p className={styles.p15}>Team collaboration</p>
-            <p className={styles.p16}>
-              Invite your teammates to work on your typebots with you
-            </p>
-          </div>
-          <div className={styles.container713}>
-            <div className={styles.img25}>
-              <img src={image19}></img>
-            </div>
-            <p className={styles.p17}>Link to sub typebots</p>
-            <p className={styles.p18}>
-              Reuse your typebots in different parent bots.
-            </p>
-          </div>
-        </div>
-        <div className={styles.container72}>
-          <div className={styles.container721}>
-            <div className={styles.img26}>
-              <img src={image20}></img>
-            </div>
-            <p className={styles.p19}>Custom code</p>
-            <p className={styles.p20}>
-              Customize everything with your own Javascript & CSS code
-            </p>
-          </div>
-
-          <div className={styles.container722}>
-            <div className={styles.img27}>
-              <img src={image21}></img>
-            </div>
-            <p className={styles.p21}>Custom domain</p>
-            <p className={styles.p22}>
-              Connect your typebot to the custom URL of your choice
-            </p>
-          </div>
-
-          <div className={styles.container723}>
-            <div className={styles.img28}>
-              <img src={image22}></img>
-            </div>
-            <p className={styles.p23}>Folder management</p>
-            <p className={styles.p24}>
-              Organize your typebots in specific folders to keep it clean and
-              work with multiple clients
-            </p>
-          </div>
-        </div>
-        <div className={styles.container73}>
-          <p className={styles.p25}>
-            Loved by teams and creators from all around the world
-          </p>
-          <div className={styles.imagesList1}>
-            <img src={image23}></img>
-            <img src={image24}></img>
-            <img src={image25}></img>
-            <img src={image26}></img>
-          </div>
-          <div className={styles.imagesList2}>
-            <img src={image27}></img>
-            <img src={image28}></img>
-            <img src={image29}></img>
-            <img src={image30}></img>
-          </div>
-        </div>
+        <img src={display} className={styles.container701}></img>
       </div>
 
       <div className={styles.container8}>
