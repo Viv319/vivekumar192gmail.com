@@ -26,4 +26,5 @@ router.get(
   popupController.getPopupByFormId
 );
 
+router.patch("/updateView", popupController.updateView);
 module.exports = router;

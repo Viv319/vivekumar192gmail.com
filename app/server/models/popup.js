@@ -28,6 +28,19 @@ const PopupSchema = new mongoose.Schema({
     type: String,
     default: "light",
   },
+
+  totalViews: {
+    type: Number,
+    default: 0,
+  },
+  totalStarts: {
+    type: Number,
+    default: 0,
+  },
+  completionRate: {
+    type: Number,
+    default: 0,
+  },
 });
 
 const Popup = mongoose.model("NewPopup1", PopupSchema);

@@ -86,9 +86,9 @@ export default function Landing() {
         <div className={styles.subcontainer12}>
           <img src={leftblur} className={styles.img1}></img>
 
+          <img src={blurOverlap} className={styles.img2}></img>
           <img src={rightblur} className={styles.img3}></img>
         </div>
-        <img src={blurOverlap} className={styles.img2}></img>
       </div>
       <div className={styles.container2}>
         <div className={styles.container21}>

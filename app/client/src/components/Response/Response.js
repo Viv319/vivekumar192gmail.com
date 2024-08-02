@@ -119,7 +119,7 @@ export default function Response() {
                       return (
                         <div key={index} className={styles.responseItem}>
                           <p className={styles.inputValue}>
-                            {content.contentType} {content.order}
+                            {content.contentType} {content.order - 1}
                           </p>
                         </div>
                       );

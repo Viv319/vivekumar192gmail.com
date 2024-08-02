@@ -1,6 +1,6 @@
 import { useNavigate, useParams } from "react-router-dom";
 import React, { useState, useEffect } from "react";
-import { fetchPopupByFormId } from "../../api/popup";
+import { fetchPopupByFormId, updateUrlView } from "../../api/popup";
 import themeformcircle from "../../assets/images/themeformcircle.png";
 import styles from "./Share.module.css";
 import send from "../../assets/images/send.png";
@@ -9,6 +9,7 @@ import {
   updateShareResponse,
   incrementViewCount,
 } from "../../api/share";
+import { saveStats } from "../../api/stats";
 
 export default function Share() {
   const navigate = useNavigate();
@@ -27,6 +28,16 @@ export default function Share() {
     if (id) {
       localStorage.setItem("shareFormId", id);
     }
+
+    const updateViewCount = async () => {
+      try {
+        const result = updateUrlView();
+        console.log("updateViewCount result: ", result);
+      } catch (err) {
+        console.log("Error updating view count: ", err);
+      }
+    };
+
     const fetchFormByFormId = async () => {
       try {
         const result = await fetchPopupByFormId(id);
@@ -75,6 +86,8 @@ export default function Share() {
       }
     };
     fetchFormByFormId();
+
+    updateViewCount();
   }, [id, navigate]);
 
   const handleInputChange = (e, index) => {
@@ -130,7 +143,7 @@ export default function Share() {
         return (
           <>
             <img src={themeformcircle} alt="circle" />
-            <video controls style={{ width: "320", height: "240" }}>
+            <video controls style={{ width: "320px", height: "240px" }}>
               <source src={content.inputValue} type="video/mp4" />
               Your browser does not support the video tag.
             </video>
@@ -143,8 +156,8 @@ export default function Share() {
             <img
               src={content.inputValue}
               alt="gif"
-              style={{ maxWidth: "100%" }}
-              className={isDisabled(`gif${index}`) ? styles.disabled : ""}
+              // style={{ maxWidth: "100%" }}
+              // className={isDisabled(`gif${index}`) ? styles.disabled : ""}
               // onClick={() => {
               //   if (!isDisabled(`gif${index}`))
               //     handleElementClick(`gif${index}`);
@@ -305,14 +318,15 @@ export default function Share() {
                   handleElementClick(`ratingInput${index}`);
               }}
             >
-              <input
+              <img src={send} alt="send" />
+              {/* <input
                 style={{
                   backgroundColor: "#053EC4",
                   color: "white",
                   border: "0px",
                   outline: "none",
                 }}
-              />
+              /> */}
             </div>
           </div>
         );
@@ -328,7 +342,7 @@ export default function Share() {
                   handleElementClick(`button${index}`);
               }}
             >
-              <input
+              <div
                 style={{
                   backgroundColor: "#053EC4",
                   color: "white",
@@ -421,13 +435,13 @@ export default function Share() {
 
   return (
     <div className={getThemeClass(shareFormShow?.theme)}>
-      <h1>Fill Form</h1>
+      {/* <h1>Fill Form</h1> */}
       {shareFormShow ? (
         <div>
-          <h2>{shareFormShow.name}</h2>
-          <p>Theme: {shareFormShow.theme}</p>
-          <div>
-            <h3>Contents:</h3>
+          {/* <h2>{shareFormShow.name}</h2> */}
+          {/* <p>Theme: {shareFormShow.theme}</p> */}
+          <div className={styles.renderContent}>
+            {/* <h3>Contents:</h3> */}
             {shareFormShow.contents && shareFormShow.contents.length > 0 ? (
               <ul>
                 {shareFormShow.contents.map((content, index) => (

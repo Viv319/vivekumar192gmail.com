@@ -109,3 +109,15 @@ export const fetchPopupByFormId = async () => {
     console.log(error);
   }
 };
+
+export const updateUrlView = async () => {
+  try {
+    // const id = localStorage.getItem("shareFormId");
+    const reqUrl = `${backendUrl}/updateView`;
+
+    const response = await axios.patch(reqUrl);
+    return response.data;
+  } catch (error) {
+    console.log(error);
+  }
+};

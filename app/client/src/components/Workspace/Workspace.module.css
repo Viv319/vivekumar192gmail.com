@@ -4,7 +4,7 @@
   max-width: 100vw;
   height: 100vh;
   /* height: auto; */
-  overflow-y: auto;
+  /* overflow-y: auto; */
 }
 
 .upper {
@@ -96,11 +96,12 @@
   cursor: pointer;
 }
 .body {
-  height: 92vh;
-  width: 100vw;
+  /* height: 92vh; */
+  /* width: 100vw; */
   background-color: #1f1f23;
   padding: 15px;
-  overflow-y: auto;
+  /* overflow-y: auto; */
+  display: flex;
 }
 
 .left {
@@ -181,9 +182,12 @@
 } */
 
 .middleright {
-  display: inline-block;
-  overflow-y: auto;
-  max-height: 100%;
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  align-items: center;
+  /* overflow-y: scroll; */
+  /* max-height: 100%; */
 }
 
 .start {
@@ -198,24 +202,31 @@
   text-align: left;
   color: white;
   padding: 13px;
-  position: absolute;
-  top: 8rem;
-  margin-left: 20rem;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  /* position: absolute; */
+  /* top: 8rem; */
+  /* margin-left: 20rem; */
 }
 .popups {
-  height: auto;
-  overflow-y: auto;
+  overflow-y: scroll;
+  height: 70vh;
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  align-items: center;
 }
 .popup {
-  position: absolute;
-  /* position: relative; */
+  /* position: absolute; */
+  position: relative;
   background-color: #18181b;
+  margin-top: 20px;
   padding: 10px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  z-index: 1000;
+  /* z-index: 1000; */
   border-radius: 8px;
   border: 1px solid #18181b;
-  margin-left: 50px;
   /* overflow-y: auto; */
 }
 
@@ -266,10 +277,4 @@
 
 .hintText {
   color: #555555;
-}
-
-.popupContainer {
-  /* position: relative; */
-  /* max-height:  */
-  /* overflow-y: auto; */
 }

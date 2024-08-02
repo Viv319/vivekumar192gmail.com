@@ -135,6 +135,22 @@ const getPopupByFormId = async (req, res, next) => {
   }
 };
 
+const updateView = async (req, res) => {
+  try {
+    const formId = localStorage.getItem("shareFormId");
+
+    const updatedForm = await Form.find(formId);
+
+    updatedForm.totalViews = updatedForm.totalViews + 1;
+
+    await updatedForm.save();
+
+    res.status(200).json(updatedForm);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+};
+
 module.exports = {
   createPopup,
   getPopupByUserId,
@@ -143,4 +159,5 @@ module.exports = {
   deleteFolderWithAllPopups,
   updatePopup,
   getPopupByFormId,
+  updateView,
 };

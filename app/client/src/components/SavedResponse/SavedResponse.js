@@ -117,7 +117,6 @@ export default function SavedResponse() {
                 </div>
                 <div className={styles.resp}> {index + 1} </div>
                 <div className={styles.submissionTime}>
-                  {/* {index + 1} */}
                   {new Date(form.submitionStartTime).toLocaleDateString(
                     "en-IN",
                     {

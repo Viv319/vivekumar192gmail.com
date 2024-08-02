@@ -57,8 +57,8 @@ export default function Workspace() {
       content,
       count,
       position: {
-        top: newTop,
-        left: rect.left + window.scrollX,
+        // top: newTop,
+        // left: rect.left + window.scrollX,
       },
       id: Date.now(),
     };
