@@ -116,10 +116,17 @@ export default function SavedResponse() {
         <div className={styles.responseContainer1}>
           {shareData.length > 0 && (
             <p className={styles.middle}>
-              <p className={styles.views}>Total Views: {view.totalViews}</p>
-              <p className={styles.starts}>stats {stat.totalStarts}</p>
+              <p className={styles.views}>Views {view.totalViews}</p>
+              <p className={styles.starts}>Starts {stat.totalStarts}</p>
               <p className={styles.completionRate}>
-                completion rate {completionRate.completionRate}
+                Completion rate{" "}
+                {isFinite(stat.totalStarts / completionRate.completionRate)
+                  ? (
+                      (stat.totalStarts / completionRate.completionRate) *
+                      100
+                    ).toFixed(2)
+                  : 0}
+                %
               </p>
             </p>
           )}
