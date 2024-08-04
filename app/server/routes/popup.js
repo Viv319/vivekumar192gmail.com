@@ -35,7 +35,10 @@ router.patch("/updateStat/:formId", popupController.updateStats);
 router.get("/viewStat/:formId", popupController.viewStats);
 module.exports = router;
 
-router.patch("/updateCompletionRate/:formId", popupController.updateStats);
+router.patch(
+  "/updateCompletionRate/:formId",
+  popupController.updateCompletionRate
+);
 
-router.get("/viewCompletionRate/:formId", popupController.viewStats);
+router.get("/viewCompletionRate/:formId", popupController.viewCompletionRate);
 module.exports = router;

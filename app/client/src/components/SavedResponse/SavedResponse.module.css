@@ -68,6 +68,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-bottom: 5rem;
 }
 
 .middle {
@@ -78,7 +79,7 @@
 }
 .responseContainer2 {
   margin-top: 2rem;
-  display: inline-flex;
+  display: inline;
   justify-content: center;
   align-items: center;
 }
@@ -90,6 +91,7 @@
   align-items: center;
   font-size: 1rem;
   margin-bottom: 5px;
+
   /* margin-right: 20px; */
 }
 
@@ -103,6 +105,8 @@
   display: flex;
   justify-content: center;
   align-items: flex-start;
+  margin-left: 25rem;
+  margin-bottom: 20px;
 }
 
 .views,

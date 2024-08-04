@@ -66,6 +66,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-bottom: 5rem;
 }
 
 .middle {
@@ -76,7 +77,9 @@
 }
 .responseContainer2 {
   margin-top: 2rem;
-  display: inline-flex;
+  /* margin-left: 50rem; */
+
+  display: inline;
   justify-content: center;
   align-items: center;
 }
@@ -106,6 +109,20 @@
 .responseContainer {
   /* display: inline; */
   margin-left: 80px;
+}
+
+.showResponse {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.showResponse2 {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  margin-left: 25rem;
+  margin-bottom: 20px;
 }
 
 .resp {

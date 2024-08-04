@@ -4,11 +4,7 @@ import { fetchPopupByFormId, updateUrlView } from "../../api/popup";
 import themeformcircle from "../../assets/images/themeformcircle.png";
 import styles from "./Share.module.css";
 import send from "../../assets/images/send.png";
-import {
-  saveShareResponse,
-  updateShareResponse,
-  incrementViewCount,
-} from "../../api/share";
+import { saveShareResponse, updateShareResponse } from "../../api/share";
 import { updateUrlStats, updateCompletionRate } from "../../api/popup";
 
 export default function Share() {
@@ -98,19 +94,6 @@ export default function Share() {
         console.log("result from fetchPopupByFormId: ", result);
 
         // ................................
-
-        const i = localStorage.getItem("shareFormId");
-        if (i) {
-          const incResult = await incrementViewCount(id); // Use form ID for updating view count
-          console.log("Increment result:", incResult);
-          // setShareData((prevData) =>
-          //   prevData.map((form) =>
-          //     form._id === i
-          //       ? { ...form, totalViews: incResult.totalViews }
-          //       : form
-          //   )
-          // );
-        }
       } catch (error) {
         console.error("Error fetching popup details:", error);
       }
