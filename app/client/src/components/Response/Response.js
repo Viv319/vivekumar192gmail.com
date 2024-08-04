@@ -14,7 +14,7 @@ import {
   viewCompletionRate,
 } from "../../api/popup";
 
-import { getFormResponse, incrementViewCount } from "../../api/share";
+import { getFormResponse } from "../../api/share";
 
 export default function Response() {
   const navigate = useNavigate();
@@ -44,8 +44,6 @@ export default function Response() {
 
   const [completionRate, setCompletionRate] = useState([]);
 
-  const [one, setOne] = useState(true);
-
   useEffect(() => {
     const viewCOunt = async () => {
       try {
@@ -72,11 +70,6 @@ export default function Response() {
         const result = await getFormResponse();
         setShareData(result.data);
         console.log("result from getSahredFormResponse: ", result);
-
-        // Increment view count for each form
-        // result.data.forEach(async (form) => {
-
-        // });
       } catch (error) {
         console.log("Error fetching share data: ", error);
       }
@@ -140,10 +133,17 @@ export default function Response() {
         <div className={styles.responseContainer1}>
           {shareData.length > 0 && (
             <p className={styles.middle}>
-              <p className={styles.views}>Total Views: {view.totalViews}</p>
-              <p className={styles.starts}>stats {stat.totalStarts}</p>
+              <p className={styles.views}>Views {view.totalViews}</p>
+              <p className={styles.starts}>Starts {stat.totalStarts}</p>
               <p className={styles.completionRate}>
-                completion rate {completionRate.completionRate}
+                Completion rate{" "}
+                {isFinite(stat.totalStarts / completionRate.completionRate)
+                  ? (
+                      (stat.totalStarts / completionRate.completionRate) *
+                      100
+                    ).toFixed(2)
+                  : 0}
+                %
               </p>
             </p>
           )}
