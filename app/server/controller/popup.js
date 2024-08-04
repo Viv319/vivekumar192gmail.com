@@ -137,15 +137,83 @@ const getPopupByFormId = async (req, res, next) => {
 
 const updateView = async (req, res) => {
   try {
-    const formId = localStorage.getItem("shareFormId");
+    const { formId } = req.params;
 
-    const updatedForm = await Form.find(formId);
-
-    updatedForm.totalViews = updatedForm.totalViews + 1;
-
-    await updatedForm.save();
+    const updatedForm = await Popup.findByIdAndUpdate(
+      formId,
+      { $inc: { totalViews: 1 } },
+      { new: true }
+    );
 
     res.status(200).json(updatedForm);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+};
+
+const updateStats = async (req, res) => {
+  try {
+    const { formId } = req.params;
+
+    const updatedForm = await Popup.findByIdAndUpdate(
+      formId,
+      { $inc: { totalStarts: 1 } },
+      { new: true }
+    );
+
+    res.status(200).json(updatedForm);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+};
+
+const viewView = async (req, res) => {
+  try {
+    const { formId } = req.params;
+
+    const updatedForm = await Popup.findById({ _id: formId });
+
+    res.status(200).json(updatedForm);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+};
+
+const viewStats = async (req, res) => {
+  try {
+    const { formId } = req.params;
+
+    const findForm = await Popup.findById({ _id: formId });
+
+    res.status(200).json(findForm);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+};
+
+const updateCompletionRate = async (req, res) => {
+  try {
+    const { formId } = req.params;
+
+    const updatedForm = await Popup.findByIdAndUpdate(
+      formId,
+      { $inc: { completionRate: 1 } },
+      { new: true }
+    );
+
+    res.status(200).json(updatedForm);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+};
+
+const viewCompletionRate = async (req, res) => {
+  try {
+    const { formId } = req.params;
+
+    const findForm = await Popup.findById({ _id: formId });
+
+    res.status(200).json(findForm);
   } catch (err) {
     res.status(500).json({ message: err.message });
   }
@@ -160,4 +228,9 @@ module.exports = {
   updatePopup,
   getPopupByFormId,
   updateView,
+  viewView,
+  updateStats,
+  viewStats,
+  updateCompletionRate,
+  viewCompletionRate,
 };

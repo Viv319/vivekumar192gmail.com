@@ -9,7 +9,7 @@ import {
   updateShareResponse,
   incrementViewCount,
 } from "../../api/share";
-import { saveStats } from "../../api/stats";
+import { updateUrlStats, updateCompletionRate } from "../../api/popup";
 
 export default function Share() {
   const navigate = useNavigate();
@@ -22,7 +22,33 @@ export default function Share() {
   const [submissionId, setSubmissionId] = useState(null);
 
   const [submitionStartTime, setSubmitionStartTime] = useState(null);
-  const [visitCount, setVisitCount] = useState(0);
+
+  const { formId } = useParams();
+
+  const [stat, setStat] = useState([]);
+
+  const [fetchStat, setFetchStat] = useState(false);
+
+  const [complete, setComplete] = useState([]);
+
+  const statsCount = async () => {
+    try {
+      const statCount = await updateUrlStats(formId);
+      setStat(statCount);
+    } catch (error) {
+      console.log("Error updating view count: ", error);
+    }
+  };
+
+  const incrementCompletionRate = async () => {
+    try {
+      const result = updateCompletionRate();
+      setComplete(result);
+      console.log("updateCompletionRate result: ", result);
+    } catch (err) {
+      console.log("Error updating completion rate: ", err);
+    }
+  };
 
   useEffect(() => {
     if (id) {
@@ -43,6 +69,10 @@ export default function Share() {
         const result = await fetchPopupByFormId(id);
         if (result && result.popups && result.popups.length > 0) {
           setShareFormShow(result.popups[0]);
+
+          // const length = result.popups.contents.length;
+          // localStorage.setItem("length", length);
+
           const initialValues = result.popups[0].contents.reduce(
             (acc, content, index) => {
               if (
@@ -98,11 +128,30 @@ export default function Share() {
   };
 
   const handleElementClick = (element) => {
+    if (!disabledElements[element]) {
+      if (fetchStat === false) {
+        setFetchStat(true);
+
+        statsCount();
+      }
+    }
+
     setDisabledElements((prev) => ({
       ...prev,
       [element]: true,
     }));
     handleSave();
+  };
+
+  const handleCompletionRate = (value) => {
+    const length = localStorage.getItem("length");
+
+    console.log("element value: " + value + " length: " + length);
+
+    if (value === length - 1) {
+      console.log("going to increment the completion rate");
+      incrementCompletionRate();
+    }
   };
 
   const handleRatingClick = (index, rating) => {
@@ -113,6 +162,8 @@ export default function Share() {
   };
 
   const renderContent = (content, index) => {
+    // console.log("content value = " + content.length);
+
     const isDisabled = (element) => disabledElements[element];
 
     switch (content.contentType) {
@@ -183,6 +234,7 @@ export default function Share() {
               onClick={() => {
                 if (!isDisabled(`textInput${index}`))
                   handleElementClick(`textInput${index}`);
+                handleCompletionRate(index);
               }}
             >
               <img src={send} alt="send" />
@@ -207,6 +259,7 @@ export default function Share() {
               onClick={() => {
                 if (!isDisabled(`numberInput${index}`))
                   handleElementClick(`numberInput${index}`);
+                handleCompletionRate(index);
               }}
             >
               <img src={send} alt="send" />
@@ -231,6 +284,7 @@ export default function Share() {
               onClick={() => {
                 if (!isDisabled(`emailInput${index}`))
                   handleElementClick(`emailInput${index}`);
+                handleCompletionRate(index);
               }}
             >
               <img src={send} alt="send" />
@@ -255,6 +309,7 @@ export default function Share() {
               onClick={() => {
                 if (!isDisabled(`phoneInput${index}`))
                   handleElementClick(`phoneInput${index}`);
+                handleCompletionRate(index);
               }}
             >
               <img src={send} alt="send" />
@@ -279,6 +334,7 @@ export default function Share() {
               onClick={() => {
                 if (!isDisabled(`dateInput${index}`))
                   handleElementClick(`dateInput${index}`);
+                handleCompletionRate(index);
               }}
             >
               <img src={send} alt="send" />
@@ -316,6 +372,7 @@ export default function Share() {
               onClick={() => {
                 if (!isDisabled(`ratingInput${index}`))
                   handleElementClick(`ratingInput${index}`);
+                handleCompletionRate(index);
               }}
             >
               <img src={send} alt="send" />
@@ -340,6 +397,7 @@ export default function Share() {
               onClick={() => {
                 if (!isDisabled(`button${index}`))
                   handleElementClick(`button${index}`);
+                handleCompletionRate(index);
               }}
             >
               <div
@@ -437,13 +495,14 @@ export default function Share() {
     <div className={getThemeClass(shareFormShow?.theme)}>
       {/* <h1>Fill Form</h1> */}
       {shareFormShow ? (
-        <div>
+        <div className={styles.mainbody}>
           {/* <h2>{shareFormShow.name}</h2> */}
           {/* <p>Theme: {shareFormShow.theme}</p> */}
           <div className={styles.renderContent}>
             {/* <h3>Contents:</h3> */}
             {shareFormShow.contents && shareFormShow.contents.length > 0 ? (
               <ul>
+                {localStorage.setItem("length", shareFormShow.contents.length)}
                 {shareFormShow.contents.map((content, index) => (
                   <li
                     key={index}

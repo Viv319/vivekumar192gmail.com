@@ -6,6 +6,13 @@ import { getSahredFormResponse } from "../../api/share";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useParams } from "react-router-dom";
+import {
+  // updateUrlView,
+  viewUrlView,
+  updateUrlStats,
+  viewUrlStats,
+  viewCompletionRate,
+} from "../../api/popup";
 
 export default function SavedResponse() {
   const navigate = useNavigate();
@@ -18,11 +25,35 @@ export default function SavedResponse() {
 
   const { formId } = useParams();
 
-  const [responses, setResponses] = useState([]);
+  const [view, setView] = useState([]);
+
+  const [stat, setStat] = useState([]);
+
+  const [completionRate, setCompletionRate] = useState([]);
+
+  const [one, setOne] = useState(true);
 
   useEffect(() => {
-    // getSahredFormResponse
-    console.log("this is use effect");
+    setOne(false);
+    const viewCOunt = async () => {
+      try {
+        const viewCount = await viewUrlView(formId);
+        console.log("view count: " + viewCount.totalViews);
+        setView(viewCount);
+      } catch (error) {
+        console.log("Error updating view count: ", error);
+      }
+    };
+
+    const viewStats = async () => {
+      try {
+        const viewStatsResult = await viewUrlStats(formId);
+        setStat(viewStatsResult);
+        console.log("view stats", viewStatsResult.totalStarts);
+      } catch (error) {
+        console.log("Error fetching view stats: ", error);
+      }
+    };
 
     const fetchShareResponse = async () => {
       try {
@@ -38,6 +69,20 @@ export default function SavedResponse() {
         console.log("Error fetching share data: ", error);
       }
     };
+
+    const fetchCompletionRate = async () => {
+      try {
+        const completionRate = await viewCompletionRate(formId);
+        console.log("completion rate: " + completionRate.completionRate);
+        setCompletionRate(completionRate);
+      } catch (error) {
+        console.log("Error fetching completion rate: ", error);
+      }
+    };
+
+    fetchCompletionRate();
+    viewStats();
+    viewCOunt();
     fetchShareResponse();
   }, [formId]);
 
@@ -54,8 +99,6 @@ export default function SavedResponse() {
   const [isSaved, setIsSaved] = useState(false);
   const [isOption1Clicked, setIsOption1Clicked] = useState(false);
 
-  // const uniqueContentTypes = new Set();
-
   return (
     <div className={styles.container}>
       <div className={styles.upper}>
@@ -70,83 +113,73 @@ export default function SavedResponse() {
         </div>
       </div>
       <div className={styles.body}>
-        {/* <h1>Responses for Form {formId}</h1> */}
         <div className={styles.responseContainer1}>
           {shareData.length > 0 && (
             <p className={styles.middle}>
-              <p className={styles.views}>
-                Total Views: {shareData[0].totalViews}{" "}
-                {/* Display the view count */}
-              </p>
-              <p className={styles.starts}>
-                {/* Total Starts: {form.totalStarts} */}
-                stats
-              </p>
+              <p className={styles.views}>Total Views: {view.totalViews}</p>
+              <p className={styles.starts}>stats {stat.totalStarts}</p>
               <p className={styles.completionRate}>
-                {/* Completion Rate: {form.completionRate} */}
-                completion rate
+                completion rate {completionRate.completionRate}
               </p>
             </p>
           )}
         </div>
+
         <div className={styles.responseContainer2}>
-          <div className={styles.sub}>submitted at</div>
           {shareData.length > 0 ? (
             shareData.map((form, index) => (
               <div key={index} className={styles.responseContainer}>
-                <div>
+                <div className={styles.showResponse}>
+                  <div className={styles.sub}>Submitted at</div>
                   {form.contents
                     .filter((content) =>
                       allowedInputTypes.includes(content.contentType)
                     )
+                    // .slice(0, 1)
                     .map((content, index) => {
-                      // if (uniqueContentTypes.has(content.contentType)) {
-                      //   return null; // Skip this content if it's already been printed
-                      // }
-
-                      // uniqueContentTypes.add(content.contentType); // Add the contentType to the set
-
                       return (
                         <div key={index} className={styles.responseItem}>
                           <p className={styles.inputValue}>
-                            {content.contentType} {content.order}
+                            {content.contentType} {index + 1}
                           </p>
                         </div>
                       );
                     })}
                 </div>
-                <div className={styles.resp}> {index + 1} </div>
-                <div className={styles.submissionTime}>
-                  {new Date(form.submitionStartTime).toLocaleDateString(
-                    "en-IN",
-                    {
-                      timeZone: "Asia/Kolkata",
-                      month: "long",
-                      day: "numeric",
-                    }
-                  )}
-                  ,{" "}
-                  {new Date(form.submitionStartTime)
-                    .toLocaleTimeString("en-IN", {
-                      timeZone: "Asia/Kolkata",
-                      hour: "numeric",
-                      minute: "numeric",
-                      hour12: true,
-                    })
-                    .toLowerCase()}
-                </div>
-                <div className={styles.response}>
-                  {form.contents
-                    .filter((content) =>
-                      allowedInputTypes.includes(content.contentType)
-                    )
-                    .map((content, index) => (
-                      <div key={index} className={styles.responseItem}>
-                        <p className={styles.inputValue}>
-                          {content.inputValue}
-                        </p>
-                      </div>
-                    ))}
+                <div className={styles.showResponse2}>
+                  <div className={styles.resp}> {index + 1} </div>
+                  <div className={styles.submissionTime}>
+                    {new Date(form.submitionStartTime).toLocaleDateString(
+                      "en-IN",
+                      {
+                        timeZone: "Asia/Kolkata",
+                        month: "long",
+                        day: "numeric",
+                      }
+                    )}
+                    ,{" "}
+                    {new Date(form.submitionStartTime)
+                      .toLocaleTimeString("en-IN", {
+                        timeZone: "Asia/Kolkata",
+                        hour: "numeric",
+                        minute: "numeric",
+                        hour12: true,
+                      })
+                      .toLowerCase()}
+                  </div>
+                  <div className={styles.response}>
+                    {form.contents
+                      .filter((content) =>
+                        allowedInputTypes.includes(content.contentType)
+                      )
+                      .map((content, index) => (
+                        <div key={index} className={styles.responseItem}>
+                          <p className={styles.inputValue}>
+                            {content.inputValue}
+                          </p>
+                        </div>
+                      ))}
+                  </div>
                 </div>
               </div>
             ))

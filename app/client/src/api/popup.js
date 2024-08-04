@@ -112,10 +112,82 @@ export const fetchPopupByFormId = async () => {
 
 export const updateUrlView = async () => {
   try {
-    // const id = localStorage.getItem("shareFormId");
-    const reqUrl = `${backendUrl}/updateView`;
+    const formId = localStorage.getItem("shareFormId");
+    const userformId = formId ? formId.replace(/"/g, "") : "";
+
+    const reqUrl = `${backendUrl}/updateView/${userformId}`;
 
     const response = await axios.patch(reqUrl);
+    return response.data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const viewUrlView = async () => {
+  try {
+    const formId = localStorage.getItem("shareFormId");
+    const userformId = formId ? formId.replace(/"/g, "") : "";
+
+    const reqUrl = `${backendUrl}/viewView/${userformId}`;
+
+    const response = await axios.get(reqUrl);
+    return response.data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const updateUrlStats = async () => {
+  try {
+    const formId = localStorage.getItem("shareFormId");
+    const userformId = formId ? formId.replace(/"/g, "") : "";
+
+    const reqUrl = `${backendUrl}/updateStat/${userformId}`;
+
+    const response = await axios.patch(reqUrl);
+    return response.data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const viewUrlStats = async () => {
+  try {
+    const formId = localStorage.getItem("shareFormId");
+    const userformId = formId ? formId.replace(/"/g, "") : "";
+
+    const reqUrl = `${backendUrl}/viewStat/${userformId}`;
+
+    const response = await axios.get(reqUrl);
+    return response.data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const updateCompletionRate = async () => {
+  try {
+    const formId = localStorage.getItem("shareFormId");
+    const userformId = formId ? formId.replace(/"/g, "") : "";
+
+    const reqUrl = `${backendUrl}/updateCompletionRate/${userformId}`;
+
+    const response = await axios.patch(reqUrl);
+    return response.data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const viewCompletionRate = async () => {
+  try {
+    const formId = localStorage.getItem("shareFormId");
+    const userformId = formId ? formId.replace(/"/g, "") : "";
+
+    const reqUrl = `${backendUrl}/viewCompletionRate/${userformId}`;
+
+    const response = await axios.get(reqUrl);
     return response.data;
   } catch (error) {
     console.log(error);

@@ -26,5 +26,16 @@ router.get(
   popupController.getPopupByFormId
 );
 
-router.patch("/updateView", popupController.updateView);
+router.patch("/updateView/:formId", popupController.updateView);
+
+router.get("/viewView/:formId", popupController.viewView);
+
+router.patch("/updateStat/:formId", popupController.updateStats);
+
+router.get("/viewStat/:formId", popupController.viewStats);
+module.exports = router;
+
+router.patch("/updateCompletionRate/:formId", popupController.updateStats);
+
+router.get("/viewCompletionRate/:formId", popupController.viewStats);
 module.exports = router;

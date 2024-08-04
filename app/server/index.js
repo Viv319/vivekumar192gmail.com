@@ -4,7 +4,6 @@ const authRoute = require("./routes/auth");
 const folderRoutes = require("./routes/folder");
 const popupRoutes = require("./routes/popup");
 const shareRoutes = require("./routes/share");
-const statsRoutes = require("./routes/stats");
 
 const cors = require("cors");
 require("dotenv").config();
@@ -32,7 +31,6 @@ app.use("/api/v1/auth", authRoute);
 app.use("/api/v1/folder", folderRoutes);
 app.use("/api/v1/popup", popupRoutes);
 app.use("/api/v1/share", shareRoutes);
-app.use("/api/v1/stats", statsRoutes);
 
 app.use((error, req, res, next) => {
   console.log(error);

@@ -16,19 +16,6 @@ const shareSchema = new Schema({
     },
   ],
 
-  totalViews: {
-    type: Number,
-    default: 0,
-  },
-  totalStarts: {
-    type: Number,
-    default: 0,
-  },
-  completionRate: {
-    type: Number,
-    default: 0,
-  },
-
   submitionStartTime: { type: Date },
 
   formId: { type: String },
