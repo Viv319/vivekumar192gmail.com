@@ -68,7 +68,7 @@ export const getSahredFormResponse = async (formId) => {
     const token = JSON.parse(localStorage.getItem("token"));
     axios.defaults.headers.common["Authorization"] = token;
     // shared;
-    const formId = localStorage.getItem("shareFolderId");
+    const formId = localStorage.getItem("shareFormId");
 
     // const reqUrl = `${backendUrl}/shareForm/${formId}`;
     const reqUrl = `${backendUrl}/getSharedForms/${formId}`;

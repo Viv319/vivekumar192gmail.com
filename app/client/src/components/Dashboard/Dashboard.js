@@ -205,7 +205,7 @@ export default function Home() {
   };
 
   const openSavedResponse = (formId) => {
-    localStorage.setItem("shareFolderId", formId);
+    localStorage.setItem("shareFormId", formId);
     navigate(`/savedResponse/${formId}`);
   };
 

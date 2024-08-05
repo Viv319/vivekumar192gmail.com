@@ -137,11 +137,8 @@ export default function Response() {
               <p className={styles.starts}>Starts {stat.totalStarts}</p>
               <p className={styles.completionRate}>
                 Completion rate{" "}
-                {isFinite(stat.totalStarts / completionRate.completionRate)
-                  ? (
-                      (stat.totalStarts / completionRate.completionRate) *
-                      100
-                    ).toFixed(2)
+                {isFinite(completionRate.completionRate / stat.totalStarts)
+                  ? (completionRate.completionRate / stat.totalStarts) * 100
                   : 0}
                 %
               </p>
