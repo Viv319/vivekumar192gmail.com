@@ -34,7 +34,6 @@ body {
   cursor: pointer;
   border: 1px solid white;
   border-radius: 6px;
-
   padding-left: 8px;
   padding-bottom: 9px;
   padding-right: 8px;
@@ -43,6 +42,7 @@ body {
   font-size: 16px;
   font-weight: 600;
   line-height: 19.2px;
+  display: inline-block;
 }
 
 .welcomeActive {
@@ -52,13 +52,21 @@ body {
 .dropdown {
   position: absolute;
   top: 59px;
-  width: 12rem;
+  /* width: 15rem; */
   background-color: #18181b;
   color: white;
   border: 1px solid white;
   border-top: none;
   border-radius: 0 0 6px 6px;
   z-index: 1000;
+  visibility: hidden; /* Initially hidden */
+  opacity: 0; /* Initially transparent */
+  transition: visibility 0s, opacity 0.5s linear; /* Smooth transition */
+}
+
+.dropdownVisible {
+  visibility: visible;
+  opacity: 1;
 }
 
 .dropdownItem1,

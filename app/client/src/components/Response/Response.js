@@ -133,12 +133,19 @@ export default function Response() {
         <div className={styles.responseContainer1}>
           {shareData.length > 0 && (
             <p className={styles.middle}>
-              <p className={styles.views}>Views {view.totalViews}</p>
-              <p className={styles.starts}>Starts {stat.totalStarts}</p>
-              <p className={styles.completionRate}>
-                Completion rate{" "}
+              <p className={styles.views}>
+                Views <br /> {view.totalViews}
+              </p>
+              <p className={styles.starts}>
+                Starts <br /> {stat.totalStarts}
+              </p>
+              <p className={styles.completionRateP}>
+                Completion rate <br />
                 {isFinite(completionRate.completionRate / stat.totalStarts)
-                  ? (completionRate.completionRate / stat.totalStarts) * 100
+                  ? (
+                      (completionRate.completionRate / stat.totalStarts) *
+                      100
+                    ).toFixed(2)
                   : 0}
                 %
               </p>
@@ -148,28 +155,32 @@ export default function Response() {
 
         <div className={styles.responseContainer2}>
           {shareData.length > 0 ? (
+            <div className={styles.showResponse}>
+              <div className={styles.sub}>Submitted at</div>
+              {shareData[0].contents
+                .filter((content) =>
+                  allowedInputTypes.includes(content.contentType)
+                )
+                .map((content, index) => (
+                  <div key={index} className={styles.responseItem2}>
+                    <p className={styles.inputValue}>
+                      {content.contentType} {index + 1}
+                    </p>
+                  </div>
+                ))}
+            </div>
+          ) : (
+            <></>
+          )}
+        </div>
+
+        <div className={styles.responseContainer3}>
+          {shareData.length > 0 ? (
             shareData.map((form, index) => (
-              <div key={index} className={styles.responseContainer}>
+              <div key={index} className={styles.responseContainer5}>
                 <div className={styles.showResponse}>
-                  <div className={styles.sub}>Submitted at</div>
-                  {form.contents
-                    .filter((content) =>
-                      allowedInputTypes.includes(content.contentType)
-                    )
-                    // .slice(0, 1)
-                    .map((content, index) => {
-                      return (
-                        <div key={index} className={styles.responseItem}>
-                          <p className={styles.inputValue}>
-                            {content.contentType} {index + 1}
-                          </p>
-                        </div>
-                      );
-                    })}
-                </div>
-                <div className={styles.showResponse2}>
                   <div className={styles.resp}> {index + 1} </div>
-                  <div className={styles.submissionTime}>
+                  <div className={styles.sub2}>
                     {new Date(form.submitionStartTime).toLocaleDateString(
                       "en-IN",
                       {
@@ -188,19 +199,17 @@ export default function Response() {
                       })
                       .toLowerCase()}
                   </div>
-                  <div className={styles.response}>
-                    {form.contents
-                      .filter((content) =>
-                        allowedInputTypes.includes(content.contentType)
-                      )
-                      .map((content, index) => (
-                        <div key={index} className={styles.responseItem}>
-                          <p className={styles.inputValue}>
-                            {content.inputValue}
-                          </p>
-                        </div>
-                      ))}
-                  </div>
+                  {form.contents
+                    .filter((content) =>
+                      allowedInputTypes.includes(content.contentType)
+                    )
+                    .map((content, index) => (
+                      <div key={index} className={styles.responseItem2}>
+                        <p className={styles.inputValue2}>
+                          {content.inputValue}
+                        </p>
+                      </div>
+                    ))}
                 </div>
               </div>
             ))

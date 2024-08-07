@@ -81,10 +81,10 @@ export default function Register() {
     try {
       const result = await registerUser(formData);
       if (result) {
-        notify();
-        setTimeout(() => {
-          navigate("/");
-        }, 3000);
+        // notify();
+        // setTimeout(() => {
+        navigate("/");
+        // }, 3000);
       } else {
         errorNotify();
       }

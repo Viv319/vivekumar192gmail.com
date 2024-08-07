@@ -111,7 +111,7 @@ export default function Workspace() {
   const handleOption1Click = () => {
     if (isSaved) {
       setIsOption1Clicked(true);
-      toast.success("form link copied successfully successfully", {
+      toast.success("form link copied successfully", {
         position: "top-center",
         autoClose: 3000,
         hideProgressBar: false,

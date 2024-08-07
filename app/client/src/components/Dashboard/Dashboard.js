@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import styles from "./Dashboard.module.css";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -67,7 +67,11 @@ export default function Home() {
     };
     fetchFormByUserId();
     fetchFolderByUserId();
-  }, []);
+
+    if (isDropdownVisible && welcomeRef.current && dropdownRef.current) {
+      dropdownRef.current.style.width = `${welcomeRef.current.offsetWidth}px`;
+    }
+  }, [isDropdownVisible]);
 
   const notify = () => {
     toast.success("Login successful", {
@@ -117,10 +121,10 @@ export default function Home() {
           progress: undefined,
           theme: "colored",
         });
-        closePopup();
-        setTimeout(() => {
-          window.location.reload();
-        }, 3000);
+        // closePopup();
+        // setTimeout(() => {
+        window.location.reload();
+        // }, 3000);
         setFormData({ name: "" });
         // setFolderDetails((prevDetails) => [...prevDetails, result]);
       }
@@ -209,11 +213,16 @@ export default function Home() {
     navigate(`/savedResponse/${formId}`);
   };
 
+  const welcomeRef = useRef(null);
+
+  const dropdownRef = useRef(null);
+
   return (
     <div className={styles.fullPage}>
       <div className={styles.upper}>
         <div className={styles.header}>
           <span
+            ref={welcomeRef}
             className={`${styles.welcome} ${
               isDropdownVisible ? styles.welcomeActive : ""
             }`}
@@ -226,17 +235,21 @@ export default function Home() {
               alt="Dropdown Arrow"
             />
           </span>
-          {isDropdownVisible && (
-            <div className={styles.dropdown}>
-              <div className={styles.dropdownItem1} onClick={clickSetting}>
-                Settings
-              </div>
-              <hr></hr>
-              <div className={styles.dropdownItem2} onClick={clicklogout}>
-                Logout
-              </div>
+          <div
+            ref={dropdownRef}
+            className={`${styles.dropdown} ${
+              isDropdownVisible ? styles.dropdownVisible : ""
+            }`}
+          >
+            <div className={styles.dropdownItem1} onClick={clickSetting}>
+              Settings
             </div>
-          )}
+            <hr></hr>
+            <div className={styles.dropdownItem2} onClick={clicklogout}>
+              Logout
+            </div>
+          </div>
+          {/* )} */}
         </div>
       </div>
       <div className={styles.body}>
