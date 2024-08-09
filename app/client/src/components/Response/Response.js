@@ -164,7 +164,7 @@ export default function Response() {
                 .map((content, index) => (
                   <div key={index} className={styles.responseItem2}>
                     <p className={styles.inputValue}>
-                      {content.contentType} {index + 1}
+                      {content.contentType} {content.order}
                     </p>
                   </div>
                 ))}

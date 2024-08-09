@@ -145,7 +145,7 @@ export default function Workspace() {
   const handleSubmit = async () => {
     const contents = popups.map((popup, index) => ({
       contentType: popup.content,
-      order: index,
+      order: popup.count,
       inputValue: popup.inputValue || "", // Include input value if present
     }));
 
