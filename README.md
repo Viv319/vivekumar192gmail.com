@@ -1,0 +1,25 @@
+
+# Response Form
+
+This project is inspired by google form in which you can create a form by giving the input fields and then share the form link to anonymous users to get there response. 
+
+Steps are giving below to get over view of the Application.
+
+Step 1:-
+Go to https://vivekumar192-gmail-com-client.vercel.app url to experience the Application
+
+You can begin with register or login if you have accound already.
+
+
+## Screenshots
+
+![open form](https://private-user-images.githubusercontent.com/26425926/357908604-5919681e-62d5-4fa4-8f8c-758e0f9de668.jpeg?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3MjM2NTQwNjksIm5iZiI6MTcyMzY1Mzc2OSwicGF0aCI6Ii8yNjQyNTkyNi8zNTc5MDg2MDQtNTkxOTY4MWUtNjJkNS00ZmE0LThmOGMtNzU4ZTBmOWRlNjY4LmpwZWc_WC1BbXotQWxnb3JpdGhtPUFXUzQtSE1BQy1TSEEyNTYmWC1BbXotQ3JlZGVudGlhbD1BS0lBVkNPRFlMU0E1M1BRSzRaQSUyRjIwMjQwODE0JTJGdXMtZWFzdC0xJTJGczMlMkZhd3M0X3JlcXVlc3QmWC1BbXotRGF0ZT0yMDI0MDgxNFQxNjQyNDlaJlgtQW16LUV4cGlyZXM9MzAwJlgtQW16LVNpZ25hdHVyZT1mYmIzMWM2ZGM5ZWZmYjNlYWI0NTNmM2UwZDhiYjBlNDBhOTIxMDMyMWE1YTRiYmQ4ZGVmZmMyNTQ4NzM4NzZhJlgtQW16LVNpZ25lZEhlYWRlcnM9aG9zdCZhY3Rvcl9pZD0wJmtleV9pZD0wJnJlcG9faWQ9MCJ9.S_zXTDIP6wJoSFRnU_uY5uOho9KO8W1VZbHKOefkwys)
+
+then you can give form name at top left of the page. We can add multiple Bubbles and Inputs. So bubbles are where we will give the values for the user like video url, image url and after form creation client can give response in inputs.
+click on save then click on share to copy the form url.
+you can update the theme if you want and then go to response tab to see the response recived from the users.
+you can close this form and see the response again by clicking on the form.
+
+
+![sc2](https://private-user-images.githubusercontent.com/26425926/357913236-20e62288-a17c-4029-8eb6-ab45f9fbf4df.jpeg?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3MjM2NTQwNjksIm5iZiI6MTcyMzY1Mzc2OSwicGF0aCI6Ii8yNjQyNTkyNi8zNTc5MTMyMzYtMjBlNjIyODgtYTE3Yy00MDI5LThlYjYtYWI0NWY5ZmJmNGRmLmpwZWc_WC1BbXotQWxnb3JpdGhtPUFXUzQtSE1BQy1TSEEyNTYmWC1BbXotQ3JlZGVudGlhbD1BS0lBVkNPRFlMU0E1M1BRSzRaQSUyRjIwMjQwODE0JTJGdXMtZWFzdC0xJTJGczMlMkZhd3M0X3JlcXVlc3QmWC1BbXotRGF0ZT0yMDI0MDgxNFQxNjQyNDlaJlgtQW16LUV4cGlyZXM9MzAwJlgtQW16LVNpZ25hdHVyZT0yYzFhY2I2NWQ0OTE2OWZmNDU3YTE0ZjE5OGI5ZjI0NDJjOTlkNThkOGIyMTZiYTQ5NTdhMGY4ODBhNzUzYjhkJlgtQW16LVNpZ25lZEhlYWRlcnM9aG9zdCZhY3Rvcl9pZD0wJmtleV9pZD0wJnJlcG9faWQ9MCJ9.pPTPBrBir_uMXNQxulTkrSERlcVbKfs00H-EJDC8YQw)
+
